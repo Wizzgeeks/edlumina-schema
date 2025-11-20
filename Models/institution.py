@@ -29,7 +29,7 @@ class TeachersPermissions(EmbeddedDocument):
 class Institution(Document):
     name = StringField(required=True, unique=True)
     description = StringField()
-    created_by = StringField(required=True)
+    created_by=StringField()
     updated_by = StringField()
     mobile=StringField()
     admin_permissions = ListField(

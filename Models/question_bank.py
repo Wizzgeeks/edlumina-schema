@@ -7,7 +7,7 @@ class QuestionBank(Document):
     content =ListField(DictField(),default=[])
     question_bank_type =StringField(choices=['pdf','video','practise_test'],required=True)
     publish=BooleanField(default=False)
-    created_by = StringField(required=True)
+    created_by=StringField()
     updated_by = StringField()
     created_at = DateTimeField(default=lambda: datetime.now(timezone.utc))
     updated_at = DateTimeField(default=lambda: datetime.now(timezone.utc))
