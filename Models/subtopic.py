@@ -1,7 +1,7 @@
 from mongoengine import Document, StringField, ReferenceField,BooleanField, DateTimeField,CASCADE
 from datetime import datetime, timezone
-from course import Course
-from subject import Subject
+from Models.course import Course
+from Models.subject import Subject
 from topic import Topic
 
 
