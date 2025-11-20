@@ -5,7 +5,7 @@ from Models.question_bank import QuestionBank
 from Models.subject import Subject
 
 
-class CoursePageContent(Document):
+class SubjectPageContent(Document):
     course=ReferenceField(Course, required=True,reverse_delete_rule=CASCADE)
     subject=ReferenceField(Subject, required=True, reverse_delete_rule=CASCADE)
     question_bank=ReferenceField(QuestionBank)
@@ -27,7 +27,7 @@ class CoursePageContent(Document):
     updated_at=DateTimeField(default=lambda: datetime.now(timezone.utc))
     def save(self, *args, **kwargs):
         self.updated_at = datetime.now(timezone.utc)
-        return super(CoursePageContent, self).save(*args, **kwargs)
+        return super(SubjectPageContent, self).save(*args, **kwargs)
     def to_json(self):
         return {
             "id": str(self.id),

@@ -6,7 +6,7 @@ from Models.subject import Subject
 from Models.institution import Institution
 
 
-class CourseInstitutionPageContent(Document):
+class SubjectInstitutionPageContent(Document):
     course=ReferenceField(Course, required=True,reverse_delete_rule=CASCADE)
     subject=ReferenceField(Subject, required=True, reverse_delete_rule=CASCADE)
     institution=ReferenceField(Institution, required=True, reverse_delete_rule=CASCADE)
@@ -28,7 +28,7 @@ class CourseInstitutionPageContent(Document):
     updated_at=DateTimeField(default=lambda: datetime.now(timezone.utc))
     def save(self, *args, **kwargs):
         self.updated_at = datetime.now(timezone.utc)
-        return super(CourseInstitutionPageContent, self).save(*args, **kwargs)
+        return super(SubjectInstitutionPageContent, self).save(*args, **kwargs)
     def to_json(self):
         return {
             "id": str(self.id),
