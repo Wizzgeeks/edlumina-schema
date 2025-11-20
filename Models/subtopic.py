@@ -2,7 +2,7 @@ from mongoengine import Document, StringField, ReferenceField,BooleanField, Date
 from datetime import datetime, timezone
 from Models.course import Course
 from Models.subject import Subject
-from topic import Topic
+from Models.topic import Topic
 
 
 class Subtopic(Document):
