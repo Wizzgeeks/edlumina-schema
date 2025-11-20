@@ -23,6 +23,6 @@ class Course(Document):
             "id": str(self.id),
             "name": self.name,
             "key": self.key,
-            "created_at": self.created_at.isoformat(),
-            "updated_at": self.updated_at.isoformat(),
+            "created_at": self.created_at,
+            "updated_at": self.updated_at,
         }
