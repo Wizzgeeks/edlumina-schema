@@ -35,7 +35,7 @@ class CourseInstitutionPageContent(Document):
             "course": self.course.to_json() if self.course else None,
             "subject": self.subject.to_json()if self.subject else None,
             "institution":self.institution.to_json() if self.institution else  None,
-            "question_bank": str(self.question_bank.to_json()) if self.question_bank else None,
+            "question_bank": self.question_bank.to_json() if self.question_bank else None,
             "name": self.name,
             "page_type": self.page_type,
             "content": self.content,

@@ -49,7 +49,7 @@ class Institution(Document):
     def to_json(self):
         return {
             "id": str(self.id),
-            "courses": [str(course.to_json()) for course in self.courses],
+            "courses": [(course.to_json()) for course in self.courses],
             "name": self.name,
             "admin_permissions": [p.to_json() for p in self.admin_permissions],
             "teacher_permissions": [t.to_json() for t in self.teacher_permissions],
