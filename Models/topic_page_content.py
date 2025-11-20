@@ -1,4 +1,4 @@
-from mongoengine import Document, StringField, ReferenceField, DateTimeField, BooleanField,ListField,DictField,CASCADE
+from mongoengine import Document, StringField, ReferenceField, DateTimeField, BooleanField,ListField,DictField,IntField,CASCADE
 from datetime import datetime, timezone
 from Models.course import Course
 from Models.question_bank import QuestionBank
@@ -19,6 +19,7 @@ class TopicPageContent(Document):
     compulsory=BooleanField(default=False)
     start_initial=BooleanField(default=False)
     start_end=BooleanField(default=False)
+    sequence=IntField(default=0)
 
 
     is_deleted=BooleanField(default=False)
@@ -39,6 +40,7 @@ class TopicPageContent(Document):
             "name": self.name,
             "page_type": self.page_type,
             "content": self.content,
+            "sequence":self.sequence,
             "is_deleted": self.is_deleted,
             "created_at": self.created_at,
             "updated_at": self.updated_at,

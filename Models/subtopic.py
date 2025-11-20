@@ -1,4 +1,4 @@
-from mongoengine import Document, StringField, ReferenceField,BooleanField, DateTimeField,CASCADE
+from mongoengine import Document, StringField, ReferenceField,BooleanField, DateTimeField,CASCADE,IntField
 from datetime import datetime, timezone
 from Models.course import Course
 from Models.subject import Subject
@@ -11,6 +11,7 @@ class Subtopic(Document):
     topic=ReferenceField(Topic, required=True)
     name=StringField(required=True)
     key=StringField(required=True, unique=True)
+    sequence=IntField(default=0)
     is_deleted=BooleanField(default=False)
     created_by=StringField()
     updated_by=StringField()
@@ -30,6 +31,7 @@ class Subtopic(Document):
             "topic": self.topic.to_json() if self.topic else None,
             "name": self.name,
             "key": self.key,
+            "sequence": self.sequence,
             "is_deleted": self.is_deleted,
             "created_at": self.created_at,
             "updated_at": self.updated_at,
