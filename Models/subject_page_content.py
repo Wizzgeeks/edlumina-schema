@@ -9,7 +9,7 @@ class CoursePageContent(Document):
     course=ReferenceField(Course, required=True,reverse_delete_rule=CASCADE)
     subject=ReferenceField(Subject, required=True, reverse_delete_rule=CASCADE)
     question_bank=ReferenceField(QuestionBank)
-    
+
     name=StringField(required=True)
     page_type=StringField(choices=['content','quiz','question_bank'], required=True)
     content=ListField(DictField(),default=[])
@@ -20,7 +20,7 @@ class CoursePageContent(Document):
 
 
     is_deleted=BooleanField(default=False)
-    created_by=StringField(required=True)
+    created_by=StringField()
     updated_by=StringField()
     created_at=DateTimeField(default=lambda: datetime.now(timezone.utc))
     updated_at=DateTimeField(default=lambda: datetime.now(timezone.utc))

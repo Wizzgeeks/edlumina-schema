@@ -13,6 +13,7 @@ class SubtopicPageContent(Document):
     subject=ReferenceField(Subject, required=True, reverse_delete_rule=CASCADE)
     topic=ReferenceField(Topic, required=True, reverse_delete_rule=CASCADE)
     subtopic=ReferenceField(Subtopic,required=True,reverse_delete_rule=CASCADE)
+    institution=ReferenceField(Institution,required=True,reverse_delete_rule=CASCADE)
     question_bank=ReferenceField(QuestionBank)
     
     name=StringField(required=True)
@@ -25,7 +26,7 @@ class SubtopicPageContent(Document):
 
 
     is_deleted=BooleanField(default=False)
-    created_by=StringField(required=True)
+    created_by=StringField()
     updated_by=StringField()
     created_at=DateTimeField(default=lambda: datetime.now(timezone.utc))
     updated_at=DateTimeField(default=lambda: datetime.now(timezone.utc))

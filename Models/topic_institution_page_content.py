@@ -24,7 +24,7 @@ class TopicInstitutionPageContent(Document):
 
 
     is_deleted=BooleanField(default=False)
-    created_by=StringField(required=True)
+    created_by=StringField()
     updated_by=StringField()
     created_at=DateTimeField(default=lambda: datetime.now(timezone.utc))
     updated_at=DateTimeField(default=lambda: datetime.now(timezone.utc))
