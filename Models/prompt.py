@@ -7,7 +7,7 @@ class Prompt(Document):
     prompt=StringField()
     json_mode=BooleanField(default=False)
     json_schema=StringField()
-    types=StringField(choices=['mcq','match','fillups','content','expand','update','trueorfalse'],required=True)
+    types=StringField(choices=['mcq','match','fillups','content','expand','update','trueorfalse','analysis'],required=True)
     default=BooleanField(default=False)
     created_by=StringField()
     created_at = DateTimeField(default=lambda: datetime.now(timezone.utc))
