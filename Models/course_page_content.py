@@ -1,4 +1,4 @@
-from mongoengine import Document, StringField, ReferenceField, DateTimeField, BooleanField,ListField,DictField,CASCADE,IntField
+from mongoengine import Document, StringField, ReferenceField, DateTimeField, BooleanField,ListField,DictField,CASCADE,IntField,NULLIFY
 from datetime import datetime, timezone
 from Models.course import Course
 from Models.question_bank import QuestionBank
@@ -12,6 +12,13 @@ class CoursePageContent(Document):
     compulsory=BooleanField(default=False)
     start_initial=BooleanField(default=False)
     start_end=BooleanField(default=False)
+
+
+    parent=BooleanField(default=False)
+    child_pages = ListField(ReferenceField("CoursePageContent", reverse_delete_rule=NULLIFY))
+    hierarcy_level=IntField(default=0)
+
+
 
     sequence=IntField(default=0)
 
