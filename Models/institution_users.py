@@ -8,7 +8,7 @@ class InstitutionUsers(Document):
     email=StringField(required=True, unique=True)
     password=StringField(required=True)
     auth_token=StringField()
-    role=StringField(choices=['admin','teachers'])
+    role=StringField(choices=['admin','teacher'])
     disabled=BooleanField(default=False)
     is_deleted=BooleanField(default=False)
     created_at = DateTimeField(default=lambda: datetime.now(timezone.utc))
