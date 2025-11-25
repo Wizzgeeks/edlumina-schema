@@ -6,7 +6,7 @@ from datetime import datetime, timezone
 class InstitutionUsers(Document):
     institution = ReferenceField(Institution, required=True)
     name=StringField(required=True)
-    is_active = BooleanField(default=True)
+    email=StringField(required=True, unique=True)
     password=StringField(required=True)
     auth_token=StringField()
     role=StringField(choices=['admin','teachers'])
@@ -25,8 +25,10 @@ class InstitutionUsers(Document):
         return {
             "id": str(self.id),
             "institution": self.institution.to_json() if self.institution else None,
-            "user_id": str(self.user_id.id) if self.user_id else None,
-            "is_active": self.is_active,
+            "name": self.name,
+            "email": self.email,
+            "role": self.role,
+            # "is_active": self.is_active,
             "created_at": self.created_at,
             "updated_at": self.updated_at,
         }
