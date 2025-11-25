@@ -1,10 +1,9 @@
 from Models.institution import Institution
-from mongoengine import Document, ReferenceField, DateTimeField, BooleanField,StringField
+from mongoengine import Document, ReferenceField, DateTimeField, BooleanField,StringField,NULLIFY,CASCADE
 from datetime import datetime, timezone
 
-
 class InstitutionUsers(Document):
-    institution = ReferenceField(Institution, required=True)
+    institution = ReferenceField(Institution, required=True, reverse_delete_rule=CASCADE)
     name=StringField(required=True)
     email=StringField(required=True, unique=True)
     password=StringField(required=True)
@@ -31,4 +30,10 @@ class InstitutionUsers(Document):
             # "is_active": self.is_active,
             "created_at": self.created_at,
             "updated_at": self.updated_at,
+        }
+    def to_user(self):
+        return {
+            "id": str(self.id),
+            "name": self.name,
+            "email": self.email,
         }

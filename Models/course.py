@@ -3,7 +3,7 @@ from datetime import datetime,timezone
 
 
 class Course(Document):
-    name = StringField(required=True)
+    name = StringField(required=True,unique=True)
     key = StringField(required=True, unique=True)
     is_deleted = BooleanField(default=False)
     created_by=StringField()
