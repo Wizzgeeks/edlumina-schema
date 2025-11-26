@@ -34,7 +34,7 @@ class Users(Document):
             "name": self.name,
             "email": self.email if self.email else "",
             "register_no": self.register_no if self.register_no else "",
-            "disabled": self.disabled,
+            "disabled": self.disabled if self.disabled else False,
             "is_deleted": self.is_deleted,
             "created_at": self.created_at,
             "updated_at": self.updated_at,

@@ -28,7 +28,7 @@ class Admin(Document):
             # "student_identification_number": self.student_identification_number,
             "password": self.password,
             "auth_token": self.auth_token,
-            "disabled": self.disabled,
+            "disabled": self.disabled if self.disabled else False,
             "is_deleted": self.is_deleted,
             "created_at": self.created_at,
             "updated_at": self.updated_at,
