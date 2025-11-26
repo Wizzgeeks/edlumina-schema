@@ -6,7 +6,7 @@ class CoursePageContent(Document):
     course=ReferenceField(Course, required=True,reverse_delete_rule=CASCADE)
     question_bank=ReferenceField(QuestionBank)
     name=StringField(required=True)
-    page_type=StringField(choices=['content','quiz','question_bank','test'], required=True)
+    page_type=StringField(choices=['content','quiz','question_bank','test','mcq','match','fillups','content','expand','update','trueorfalse','analysis'], required=True)
     content=ListField(DictField(),default=[])
 
     compulsory=BooleanField(default=False)
@@ -14,10 +14,8 @@ class CoursePageContent(Document):
     start_end=BooleanField(default=False)
 
 
-    parent=BooleanField(default=False)
     child_pages = ListField(ReferenceField("CoursePageContent", reverse_delete_rule=NULLIFY))
     hierarcy_level=IntField(default=0)
-    sub_page_type=StringField(choices=['mcq','match','fillups','content','expand','update','trueorfalse','analysis'])
 
 
 
