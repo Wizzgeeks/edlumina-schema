@@ -48,4 +48,5 @@ class CoursePageContent(Document):
             "name": self.name,
             "page_type": self.page_type,
             "sequence": self.sequence,
+            "child_pages": [cp.to_minimal_json() for cp in self.child_pages] if self.child_pages else [],
         }
