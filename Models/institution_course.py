@@ -16,7 +16,10 @@ class InstitutionCourse(Document):
         return {
             "id": str(self.id),
             "institution": self.institution.to_json() if self.institution else None,
-            "course": [course.to_json() for course in self.course] if self.course else [],
+            "course": [
+                c.to_json() for c in self.course
+                if hasattr(c, "is_deleted") and not getattr(c, "is_deleted", False)
+            ],
             "is_active": self.is_active,
             "created_at": self.created_at,
             "updated_at": self.updated_at,

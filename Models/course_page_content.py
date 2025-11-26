@@ -17,6 +17,7 @@ class CoursePageContent(Document):
     parent=BooleanField(default=False)
     child_pages = ListField(ReferenceField("CoursePageContent", reverse_delete_rule=NULLIFY))
     hierarcy_level=IntField(default=0)
+    sub_page_type=StringField(choices=['mcq','match','fillups','content','expand','update','trueorfalse','analysis'])
 
 
 
