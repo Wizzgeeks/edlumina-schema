@@ -39,6 +39,7 @@ class Institution(Document):
         EmbeddedDocumentField(TeachersPermissions)
     )
     is_deleted = BooleanField(default=False)
+    disabled=BooleanField(default=False)
     created_at = DateTimeField(default=lambda: datetime.now(timezone.utc))
     updated_at = DateTimeField(default=lambda: datetime.now(timezone.utc))
 
@@ -53,6 +54,8 @@ class Institution(Document):
             "admin_permissions": [p.to_json() for p in self.admin_permissions],
             "teacher_permissions": [t.to_json() for t in self.teacher_permissions],
             "description": self.description,
+            "mobile": self.mobile,
+            "disabled": self.disabled if self.disabled else False,
             "created_at": self.created_at,
             "updated_at": self.updated_at,
             "is_deleted": self.is_deleted,
