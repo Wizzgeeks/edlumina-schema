@@ -1,4 +1,4 @@
-from mongoengine import Document, StringField, ReferenceField, DateTimeField, BooleanField,ListField,DictField,CASCADE,IntField
+from mongoengine import Document, StringField, ReferenceField, DateTimeField, BooleanField,ListField,DictField,CASCADE,IntField,NULLIFY
 from datetime import datetime, timezone
 from Models.course import Course
 from Models.question_bank import QuestionBank
@@ -18,6 +18,9 @@ class SubjectPageContent(Document):
     start_initial=BooleanField(default=False)
     start_end=BooleanField(default=False)
     sequence=IntField(default=0)
+    
+    child_pages = ListField(ReferenceField("SubjectPageContent", reverse_delete_rule=NULLIFY))
+    hierarcy_level=IntField(default=0)
 
 
     is_deleted=BooleanField(default=False)
@@ -48,4 +51,6 @@ class SubjectPageContent(Document):
             "name": self.name,
             "page_type": self.page_type,
             "sequence": self.sequence,
+            "child_pages": [cp.to_minimal_json() for cp in self.child_pages] if self.child_pages else [],
+            "hierarcy_level": self.hierarcy_level,
         }
