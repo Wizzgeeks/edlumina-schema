@@ -23,7 +23,7 @@ class SubtopicPageContent(Document):
     start_initial=BooleanField(default=False)
     start_end=BooleanField(default=False)
 
-    child_pages = ListField(ReferenceField("SubjectPageContent", reverse_delete_rule=NULLIFY))
+    child_pages = ListField(ReferenceField("SubtopicPageContent", reverse_delete_rule=NULLIFY))
     hierarcy_level=IntField(default=0)
 
 

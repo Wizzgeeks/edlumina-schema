@@ -21,7 +21,7 @@ class TopicPageContent(Document):
     start_end=BooleanField(default=False)
     sequence=IntField(default=0)
 
-    child_pages = ListField(ReferenceField("SubjectPageContent", reverse_delete_rule=NULLIFY))
+    child_pages = ListField(ReferenceField("TopicPageContent", reverse_delete_rule=NULLIFY))
     hierarcy_level=IntField(default=0)
 
 
