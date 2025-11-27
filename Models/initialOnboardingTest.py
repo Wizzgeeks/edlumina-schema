@@ -1,8 +1,9 @@
 from Models.course import Course
-from mongoengine import Document, ReferenceField, DateTimeField, BooleanField, CASCADE, ListField,DictField,IntField
+from mongoengine import Document, ReferenceField, DateTimeField, BooleanField, CASCADE, ListField,DictField,IntField,StringField
 from datetime import datetime, timezone
 class InitialOnboardingTest(Document):
     course = ReferenceField(Course, reverse_delete_rule=CASCADE)
+    name=StringField(required=True)
     content=ListField(DictField(),default=[])
     pass_percentage=IntField(default=0)
     created_at=DateTimeField(default=datetime.now(timezone.utc))
@@ -17,6 +18,7 @@ class InitialOnboardingTest(Document):
         return {
             "id": str(self.id),
             "course": self.course.to_json() if self.course else None,
+            "name": self.name,
             "content": self.content or [],
             "pass_percentage": self.pass_percentage,
             "is_active": self.is_active,
