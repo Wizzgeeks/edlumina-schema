@@ -13,7 +13,7 @@ class TopicPageContent(Document):
     question_bank=ReferenceField(QuestionBank)
     
     name=StringField(required=True)
-    page_type=StringField(choices=['content','quiz','question_bank','test'], required=True)
+    page_type=StringField(choices=['content','quiz','question_bank','test','mcq','match','fillups','content','expand','update','trueorfalse','analysis'], required=True)
     content=ListField(DictField(),default=[])
 
     compulsory=BooleanField(default=False)
