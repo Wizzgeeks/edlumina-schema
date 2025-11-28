@@ -6,9 +6,9 @@ from datetime import datetime, timezone
 
 
 class Users(Document):
-    institution=ReferenceField(Institution, reverse_delete_rule=CASCADE,default=None)
-    course=ReferenceField(Course, reverse_delete_rule=CASCADE,default=None)
-    batch=ReferenceField(Batches, reverse_delete_rule=CASCADE,default=None)
+    institution=ReferenceField(Institution, reverse_delete_rule=CASCADE)
+    course=ReferenceField(Course, reverse_delete_rule=CASCADE)
+    batch=ReferenceField(Batches, reverse_delete_rule=CASCADE)
     name=StringField(required=True)
     email=StringField(unique=True,sparse=True)
     register_no=StringField(unique=True,sparse=True)
@@ -51,4 +51,18 @@ class Users(Document):
             "auth_token": self.auth_token if self.auth_token else "",
            
         }
-    
+    def to_admin(self):
+        return {
+            "id": str(self.id),
+            # "institution": self.institution.to_json() if self.institution else None,
+            # "course": self.course.to_json() if self.course else None,
+            # "batch": self.batch.to_json() if self.batch else None,
+            "name": self.name,
+            "email": self.email if self.email else "",
+            "register_no": self.register_no if self.register_no else "",
+            "disabled": self.disabled if self.disabled else False,
+            # "is_deleted": self.is_deleted,
+            # "created_at": self.created_at,
+            # "updated_at": self.updated_at,
+
+        }
