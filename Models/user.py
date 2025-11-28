@@ -6,9 +6,9 @@ from datetime import datetime, timezone
 
 
 class Users(Document):
-    institution=ReferenceField(Institution, reverse_delete_rule=CASCADE)
-    course=ReferenceField(Course, reverse_delete_rule=CASCADE)
-    batch=ReferenceField(Batches, reverse_delete_rule=CASCADE)
+    institution=ReferenceField(Institution, reverse_delete_rule=CASCADE,default=None)
+    course=ReferenceField(Course, reverse_delete_rule=CASCADE,default=None)
+    batch=ReferenceField(Batches, reverse_delete_rule=CASCADE,default=None)
     name=StringField(required=True)
     email=StringField(unique=True,sparse=True)
     register_no=StringField(unique=True,sparse=True)
