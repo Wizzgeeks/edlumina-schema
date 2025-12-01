@@ -28,7 +28,15 @@ class CoursePageQuestionBank(Document):
             "content": self.content or [],
             "duration": self.duration,
             "is_active": self.is_active,
-            "is_deleted": self.is_deleted,
             "created_at": self.created_at,
             "updated_at": self.updated_at,
+        }
+    def to_minimal_json(self):
+        return {
+            "id": str(self.id),
+            "name": self.name,
+            "page_type": self.page_type,
+            "sequence": self.sequence,
+            "is_active": self.is_active,
+            "child_pages": [cp.to_minimal_json() for cp in self.child_pages] if self.child_pages else [],
         }
