@@ -6,6 +6,7 @@ class InitialOnboardingTest(Document):
     name=StringField(required=True)
     content=ListField(DictField(),default=[])
     pass_percentage=IntField(default=0)
+    duration=IntField(default=0)
     created_at=DateTimeField(default=datetime.now(timezone.utc))
     updated_at=DateTimeField(default=datetime.now(timezone.utc))
     is_active=BooleanField(default=True)
@@ -21,6 +22,7 @@ class InitialOnboardingTest(Document):
             "name": self.name,
             "content": self.content or [],
             "pass_percentage": self.pass_percentage,
+            "duration": self.duration,
             "is_active": self.is_active,
             "created_at": self.created_at,
             "updated_at": self.updated_at,
@@ -30,6 +32,7 @@ class InitialOnboardingTest(Document):
             "id": str(self.id),
             "name": self.name,
             "pass_percentage": self.pass_percentage,
+            "duration": self.duration,
             "is_active": self.is_active,
         }
     
