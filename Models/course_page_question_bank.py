@@ -35,8 +35,7 @@ class CoursePageQuestionBank(Document):
         return {
             "id": str(self.id),
             "name": self.name,
-            "page_type": self.page_type,
+            "question_bank_type": self.question_bank_type,
             "sequence": self.sequence,
             "is_active": self.is_active,
-            "child_pages": [cp.to_minimal_json() for cp in self.child_pages] if self.child_pages else [],
         }
