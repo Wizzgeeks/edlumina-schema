@@ -32,6 +32,8 @@ class Institution(Document):
     created_by=StringField()
     updated_by = StringField()
     mobile=StringField()
+    website_url = StringField()
+    address = StringField()
     admin_permissions = ListField(
         EmbeddedDocumentField(AdminPermissions)
     )
@@ -59,4 +61,6 @@ class Institution(Document):
             "created_at": self.created_at,
             "updated_at": self.updated_at,
             "is_deleted": self.is_deleted,
+            "website_url":self.website_url,
+            "address":self.address,
         }
