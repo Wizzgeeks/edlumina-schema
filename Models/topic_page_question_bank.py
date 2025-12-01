@@ -38,3 +38,11 @@ class TopicPageQuestionBank(Document):
             "created_at": self.created_at,
             "updated_at": self.updated_at,
         }
+    def to_minimal_json(self):
+        return {
+            "id": str(self.id),
+            "name": self.name,
+            "question_bank_type": self.question_bank_type,
+            "sequence": self.sequence,
+            "is_active": self.is_active,
+        }
