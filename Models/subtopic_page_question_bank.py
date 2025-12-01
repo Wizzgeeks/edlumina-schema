@@ -3,11 +3,13 @@ from Models.course import Course
 from Models.subject import Subject
 from Models.institution import Institution
 from datetime import datetime, timezone
+from Models.topic import Topic
 
 
 class SubtopicPageQuestionBank(Document):
     course = ReferenceField(Course, reverse_delete_rule=CASCADE)
     subject = ReferenceField(Subject, reverse_delete_rule=CASCADE)
+    topic = ReferenceField(Topic, reverse_delete_rule=CASCADE)
     name=StringField()
     question_bank_type=StringField(choices=['pdf','video','practise_test'], required=True)
     content=ListField(DictField(),default=[])
