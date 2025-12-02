@@ -21,6 +21,8 @@ class SubjectPageContent(Document):
     
     child_pages = ListField(ReferenceField("SubjectPageContent", reverse_delete_rule=NULLIFY))
     hierarcy_level=IntField(default=0)
+    duration=IntField(default=0)
+    pass_percentage=IntField(default=0)
 
 
     is_deleted=BooleanField(default=False)
@@ -44,6 +46,8 @@ class SubjectPageContent(Document):
             "is_deleted": self.is_deleted,
             "created_at": self.created_at,
             "updated_at": self.updated_at,
+            "duration":self.duration,
+            "pass_percentage":self.pass_percentage
         }
     def to_minimal_json(self):
         return {
@@ -53,4 +57,6 @@ class SubjectPageContent(Document):
             "sequence": self.sequence,
             "child_pages": [cp.to_minimal_json() for cp in self.child_pages] if self.child_pages else [],
             "hierarcy_level": self.hierarcy_level,
+            "duration":self.duration,
+            "pass_percentage":self.pass_percentage
         }
