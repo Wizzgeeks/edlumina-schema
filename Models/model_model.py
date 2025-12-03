@@ -1,7 +1,7 @@
 from mongoengine import Document,StringField,ValidationError,BooleanField
 
 class Model(Document):
-    name = StringField(required=True,unique=True)
+    name = StringField(required=True)
     api_key = StringField(required=True)
     type = StringField(required=True)
     provider = StringField(choices=['gemini','openai','claude'],required=True)
