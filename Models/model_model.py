@@ -6,6 +6,7 @@ class Model(Document):
     type = StringField(required=True)
     provider = StringField(choices=['gemini','openai','claude'],required=True)
     is_active = BooleanField(default=False)
+    page_type=StringField(choices=['content','quiz','ai-tutor','all'], required=True)
 
     
     def clean(self):
