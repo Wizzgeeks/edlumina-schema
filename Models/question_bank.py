@@ -21,6 +21,15 @@ class QuestionBank(Document):
             "id": str(self.id),
             "questionbank_folders":str(self.questionbank_folders.id) if self.questionbank_folders else None,
             "name": self.name,
+            "publish": self.publish,
+            "created_at": self.created_at,
+            "updated_at": self.updated_at,
+        }
+    def to_minimal_json(self):
+        return {
+            "id": str(self.id),
+            "questionbank_folders":str(self.questionbank_folders.id) if self.questionbank_folders else None,
+            "name": self.name,
             "content": self.content,
             "publish": self.publish,
             "created_at": self.created_at,
