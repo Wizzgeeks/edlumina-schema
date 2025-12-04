@@ -1,11 +1,12 @@
-from mongoengine import Document, StringField, ListField, ReferenceField, DateTimeField,DictField,BooleanField  
+from mongoengine import CASCADE, Document, StringField, ListField, ReferenceField, DateTimeField,DictField,BooleanField  
 from datetime import datetime, timezone
+from Models.qb_folders import QuestionBankFolders
 
 
 class QuestionBank(Document):
+    questionbank_folders=ReferenceField(QuestionBankFolders,required=True,reverse_delete_rule=CASCADE)
     name =StringField(required=True)
     content =ListField(DictField(),default=[])
-    question_bank_type =StringField(choices=['pdf','video','practise_test'],required=True)
     publish=BooleanField(default=False)
     created_by=StringField()
     updated_by = StringField()
@@ -18,9 +19,9 @@ class QuestionBank(Document):
     def to_json(self):
         return {
             "id": str(self.id),
+            "questionbank_folders":str(self.questionbank_folders.id) if self.questionbank_folders else None,
             "name": self.name,
             "content": self.content,
-            "question_bank_type": self.question_bank_type,
             "publish": self.publish,
             "created_at": self.created_at,
             "updated_at": self.updated_at,
