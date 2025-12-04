@@ -23,7 +23,7 @@ class QuestionBankFolders(Document):
 
     def save(self, *args, **kwargs):
         self.updated_at = datetime.now(timezone.utc)
-        return super(Course, self).save(*args, **kwargs)
+        return super(QuestionBankFolders, self).save(*args, **kwargs)
 
     def to_json(self):
         return{
