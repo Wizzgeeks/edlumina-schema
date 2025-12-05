@@ -1,8 +1,9 @@
-from mongoengine import Document,StringField,IntField,DateTimeField,BooleanField
+from mongoengine import Document,StringField,IntField,DateTimeField,BooleanField,ReferenceField,NULLIFY
 from datetime import datetime,timezone
-
+from Models.initialOnboardingTest import InitialOnboardingTest
 
 class Course(Document):
+    initialOnboardingTest=ReferenceField(InitialOnboardingTest,reverse_delete_rule=NULLIFY)
     name = StringField(required=True,unique=True)
     key = StringField(required=True, unique=True)
     is_deleted = BooleanField(default=False)
