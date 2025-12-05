@@ -24,6 +24,7 @@ class QuestionBank(Document):
             "name": self.name,
             "publish": self.publish,
             "content": self.content,
+            "duration":self.duration,
             "created_at": self.created_at,
             "updated_at": self.updated_at,
         }
@@ -33,6 +34,8 @@ class QuestionBank(Document):
             "questionbank_folders":str(self.questionbank_folders.id) if self.questionbank_folders else None,
             "name": self.name,
             "publish": self.publish,
+            "duration":self.duration,
+
             "created_at": self.created_at,
             "updated_at": self.updated_at,
         }
