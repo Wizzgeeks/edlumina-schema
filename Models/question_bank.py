@@ -1,4 +1,4 @@
-from mongoengine import CASCADE, Document, StringField, ListField, ReferenceField, DateTimeField,DictField,BooleanField  
+from mongoengine import CASCADE, Document, StringField, ListField, ReferenceField, DateTimeField,DictField,BooleanField,IntField
 from datetime import datetime, timezone
 from Models.qb_folders import QuestionBankFolders
 
@@ -8,6 +8,7 @@ class QuestionBank(Document):
     name =StringField(required=True)
     content =ListField(DictField(),default=[])
     publish=BooleanField(default=False)
+    duration=IntField(default=0)
     created_by=StringField()
     updated_by = StringField()
     created_at = DateTimeField(default=lambda: datetime.now(timezone.utc))
