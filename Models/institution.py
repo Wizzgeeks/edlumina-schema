@@ -3,7 +3,7 @@ from datetime import datetime, timezone
 
 
 class AdminPermissions(EmbeddedDocument):
-    permission_type=StringField(choices=["student","course","batches","questionbank","materils","teachers"],required=True)
+    permission_type=StringField(choices=["student","course","batches","questionbank","material","teacher"],required=True)
     read=BooleanField(default=False)
     write=BooleanField(default=False)
     def to_json(self):
@@ -14,7 +14,7 @@ class AdminPermissions(EmbeddedDocument):
         }
 
 class TeachersPermissions(EmbeddedDocument):
-    permission_type=StringField(choices=["student","course","batches","questionbank","materils"],required=True)
+    permission_type=StringField(choices=["student","course","batches","questionbank","material"],required=True)
     read=BooleanField(default=False)
     write=BooleanField(default=False)
     def to_json(self):
