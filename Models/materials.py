@@ -6,7 +6,7 @@ from Models.materials_folders import MaterialsFolders
 class Materials(Document):
     materials_folders=ReferenceField(MaterialsFolders,required=True,reverse_delete_rule=CASCADE)
     name =StringField(required=True)
-    content =ListField(DictField(),default=[])
+    content =StringField(required=True)
     publish=BooleanField(default=False)
     materials_type=StringField(choices=['pdf','videos'], required=True)
     created_by=StringField()
