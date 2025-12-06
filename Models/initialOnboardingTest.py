@@ -1,4 +1,3 @@
-from Models.course import Course
 from mongoengine import Document, ReferenceField, DateTimeField, BooleanField, CASCADE, ListField,DictField,IntField,StringField
 from datetime import datetime, timezone
 class InitialOnboardingTest(Document):
