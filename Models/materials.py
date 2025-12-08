@@ -24,6 +24,7 @@ class Materials(Document):
             "name": self.name,
             "publish": self.publish,
              "content": self.content,
+             "materials_type":self.materials_type,
             "created_at": self.created_at,
             "updated_at": self.updated_at,
         }
@@ -33,6 +34,7 @@ class Materials(Document):
             "materials_folders":str(self.materials_folders.id) if self.materials_folders else None,
             "name": self.name,
             "publish": self.publish,
+            "materials_type":self.materials_type,
             "created_at": self.created_at,
             "updated_at": self.updated_at,
         }
