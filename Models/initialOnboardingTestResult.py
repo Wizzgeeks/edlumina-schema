@@ -1,22 +1,22 @@
-from mongoengine import Document, ReferenceField, DateTimeField, BooleanField, CASCADE, ListField,DictField,IntField,StringField,EmbeddedDocument,EmbeddedDocumentField
+from mongoengine import Document, ReferenceField, DateTimeField, BooleanField, CASCADE, ListField,DictField,IntField,StringField,EmbeddedDocument,EmbeddedDocumentField,FloatField
 from datetime import datetime, timezone
 from Models.initialOnboardingTest import InitialOnboardingTest
 
 class CategoryScores(EmbeddedDocument):
-    cognitive_function = IntField(default=0)
-    social_emotional_skill = IntField(default=0)
-    physical_development_skill = IntField(default=0)
-    creative_imagination = IntField(default=0)
-    critical_thinking_curiosity = IntField(default=0)
-    language_communication = IntField(default=0)
-    self_regulation_behavior = IntField(default=0)
+    cognitive_function = FloatField(default=0, min_value=0, max_value=100)
+    social_emotional_skill = FloatField(default=0, min_value=0, max_value=100)
+    physical_development_skill = FloatField(default=0, min_value=0, max_value=100)
+    creative_imagination = FloatField(default=0, min_value=0, max_value=100)
+    critical_thinking_curiosity = FloatField(default=0, min_value=0, max_value=100)
+    language_communication = FloatField(default=0, min_value=0, max_value=100)
+    self_regulation_behavior = FloatField(default=0, min_value=0, max_value=100)
 
 class InitialOnboardingTestResult(Document):
     initial_onboarding_test=ReferenceField(InitialOnboardingTest,required=True)
     attempt_data=ListField(DictField(),default=[])
     completed=BooleanField()
     attempt_questions=IntField()
-    score=IntField()
+    score=FloatField(min_value=0, max_value=100)
     category_scores = EmbeddedDocumentField(CategoryScores, default=CategoryScores)
 
     duration=IntField(default=0)
