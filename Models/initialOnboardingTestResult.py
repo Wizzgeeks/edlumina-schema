@@ -1,6 +1,7 @@
 from mongoengine import Document, ReferenceField, DateTimeField, BooleanField, CASCADE, ListField,DictField,IntField,StringField,EmbeddedDocument,EmbeddedDocumentField,FloatField
 from datetime import datetime, timezone
 from Models.initialOnboardingTest import InitialOnboardingTest
+from Models.user import Users
 
 class CategoryScores(EmbeddedDocument):
     cognitive_function = FloatField(default=0, min_value=0, max_value=100)
@@ -13,6 +14,7 @@ class CategoryScores(EmbeddedDocument):
 
 class InitialOnboardingTestResult(Document):
     initial_onboarding_test=ReferenceField(InitialOnboardingTest,required=True)
+    user=ReferenceField(Users,required=True,reverse_delete_rule=CASCADE)
     attempt_data=ListField(DictField(),default=[])
     completed=BooleanField()
     attempt_questions=IntField()
