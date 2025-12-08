@@ -1,7 +1,7 @@
 from Models.institution import Institution
 from Models.course import Course
 from Models.batches import Batches
-from mongoengine import Document, ReferenceField, DateTimeField, BooleanField, CASCADE, StringField
+from mongoengine import Document, ReferenceField, DateTimeField, BooleanField, CASCADE, StringField,ListField,DictField,FloatField
 from datetime import datetime, timezone
 
 
@@ -14,6 +14,8 @@ class Users(Document):
     register_no=StringField(unique=True,sparse=True)
     password=StringField(required=True)
     auth_token=StringField()
+    preference=ListField(DictField)
+    iq_test_mark = FloatField(min_value=0, max_value=100)
     disabled=BooleanField(default=False)
     is_deleted=BooleanField(default=False)
     created_at=DateTimeField(default=lambda: datetime.now(timezone.utc))
@@ -38,6 +40,7 @@ class Users(Document):
             "is_deleted": self.is_deleted,
             "created_at": self.created_at,
             "updated_at": self.updated_at,
+
 
         }
     def to_user(self):
