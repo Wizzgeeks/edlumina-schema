@@ -14,7 +14,7 @@ class Users(Document):
     register_no=StringField(unique=True,sparse=True)
     password=StringField(required=True)
     auth_token=StringField()
-    preference=ListField(DictField)
+    preference=ListField(DictField())
     iq_test_mark = FloatField(min_value=0, max_value=100)
     disabled=BooleanField(default=False)
     is_deleted=BooleanField(default=False)
