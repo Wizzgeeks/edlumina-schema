@@ -1,6 +1,7 @@
-from mongoengine import Document, StringField, ReferenceField, ListField, DateTimeField,BooleanField,EmbeddedDocument,DictField,EmbeddedDocumentField,CASCADE
+from mongoengine import Document, StringField, ReferenceField, ListField, DateTimeField,BooleanField,EmbeddedDocument,DictField,EmbeddedDocumentField,CASCADE,NULLIFY
 from datetime import datetime, timezone
-
+from Models.initialOnboardingTest import InitialOnboardingTest
+from Models.preference_model import PreferenceQuestion
 
 class AdminPermissions(EmbeddedDocument):
     permission_type=StringField(choices=["student","course","batches","questionbank","material","teacher"],required=True)
@@ -27,6 +28,8 @@ class TeachersPermissions(EmbeddedDocument):
 
 
 class Institution(Document):
+    initial_onboarding_test=ReferenceField(InitialOnboardingTest,reverse_delete_rule=NULLIFY)
+    preference_question=ReferenceField(PreferenceQuestion,reverse_delete_rule=NULLIFY)
     name = StringField(required=True, unique=True)
     description = StringField()
     created_by=StringField()
