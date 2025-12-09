@@ -7,6 +7,7 @@ class Course(Document):
     name = StringField(required=True,unique=True)
     key = StringField(required=True, unique=True)
     is_deleted = BooleanField(default=False)
+    publish=BooleanField(default=False)
     created_by=StringField()
     updated_by = StringField()
     created_at = DateTimeField(default=lambda: datetime.now(timezone.utc))
@@ -24,6 +25,7 @@ class Course(Document):
             "id": str(self.id),
             "name": self.name,
             "key": self.key,
+            "publish": self.publish,
             "initialOnboardingTest":str(self.initialOnboardingTest.id) if self.initialOnboardingTest else None,
             "created_at": self.created_at,
             "updated_at": self.updated_at,
