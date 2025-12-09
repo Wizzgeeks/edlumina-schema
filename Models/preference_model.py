@@ -26,3 +26,11 @@ class PreferenceQuestion(Document):
             "created_at": self.created_at,
             "updated_at": self.updated_at,
         }
+    def to_min_json(self):
+        return {
+            "id": str(self.id),
+            "name": self.name,
+            "is_active": self.is_active,
+            "created_at": self.created_at,
+            "updated_at": self.updated_at,
+        }
