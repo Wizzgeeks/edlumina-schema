@@ -7,7 +7,7 @@ class InitialOnboardingTest(Document):
     duration=IntField(default=0)
     created_at=DateTimeField(default=datetime.now(timezone.utc))
     updated_at=DateTimeField(default=datetime.now(timezone.utc))
-    defaults=BooleanField(default=False)
+    default=BooleanField(default=False)
     
     def save(self, *args, **kwargs):
         self.updated_at = datetime.now(timezone.utc)
@@ -20,7 +20,7 @@ class InitialOnboardingTest(Document):
             "content": self.content or [],
             "pass_percentage": self.pass_percentage,
             "duration": self.duration,
-            "defaults": self.defaults,
+            "default": self.default,
             "created_at": self.created_at,
             "updated_at": self.updated_at,
         }
@@ -30,7 +30,7 @@ class InitialOnboardingTest(Document):
             "name": self.name,
             "pass_percentage": self.pass_percentage,
             "duration": self.duration,
-            "defaults": self.defaults,
+            "default": self.default,
         }
     
     

@@ -5,7 +5,7 @@ from datetime import datetime, timezone
 class PreferenceQuestion(Document):
     name=StringField(required=True)
     content = ListField(DictField(), default=[])
-    defaults = BooleanField(default=False)
+    default = BooleanField(default=False)
     created_by=StringField()
     updated_by = StringField()
     created_at = DateTimeField(default=lambda: datetime.now(timezone.utc))
@@ -22,7 +22,7 @@ class PreferenceQuestion(Document):
             "id": str(self.id),
             "name": self.name,
             "content": self.content,
-            "defaults": self.defaults,
+            "default": self.default,
             "created_at": self.created_at,
             "updated_at": self.updated_at,
         }
@@ -30,7 +30,7 @@ class PreferenceQuestion(Document):
         return {
             "id": str(self.id),
             "name": self.name,
-            "defaults": self.defaults,
+            "default": self.default,
             "created_at": self.created_at,
             "updated_at": self.updated_at,
         }
