@@ -32,6 +32,7 @@ class Institution(Document):
     preference_question=ReferenceField(PreferenceQuestion,reverse_delete_rule=NULLIFY)
     name = StringField(required=True, unique=True)
     description = StringField()
+    type=StringField(choices=["school","college"],required=True)
     created_by=StringField()
     updated_by = StringField()
     mobile=StringField()
