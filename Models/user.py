@@ -15,7 +15,7 @@ class Users(Document):
     password=StringField(required=True)
     auth_token=StringField()
     preference=ListField(DictField())
-    grade=IntField(default=0)
+    grade=StringField()
     disabled=BooleanField(default=False)
     is_deleted=BooleanField(default=False)
     created_at=DateTimeField(default=lambda: datetime.now(timezone.utc))
