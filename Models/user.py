@@ -40,6 +40,7 @@ class Users(Document):
             "is_deleted": self.is_deleted,
             "created_at": self.created_at,
             "updated_at": self.updated_at,
+            "grade":self.grade if self.grade else "",
 
 
         }
