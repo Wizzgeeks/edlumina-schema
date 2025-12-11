@@ -1,6 +1,5 @@
 from mongoengine import Document, StringField, ReferenceField, ListField, DateTimeField,BooleanField,EmbeddedDocument,DictField,EmbeddedDocumentField,CASCADE,NULLIFY
 from datetime import datetime, timezone
-from Models.initialOnboardingTest import InitialOnboardingTest
 from Models.preference_model import PreferenceQuestion
 
 class AdminPermissions(EmbeddedDocument):
@@ -28,7 +27,6 @@ class TeachersPermissions(EmbeddedDocument):
 
 
 class Institution(Document):
-    initial_onboarding_test=ReferenceField(InitialOnboardingTest,reverse_delete_rule=NULLIFY)
     preference_question=ReferenceField(PreferenceQuestion,reverse_delete_rule=NULLIFY)
     name = StringField(required=True, unique=True)
     description = StringField()
@@ -67,4 +65,7 @@ class Institution(Document):
             "is_deleted": self.is_deleted,
             "website_url":self.website_url or "",
             "address":self.address or "",
+            "type":self.type,
+            "preference_question_id": str(self.preference_question.id) if self.preference_question else None,
+            "preference_question_name": self.preference_question.name if self.preference_question else ""   
         }
