@@ -5,6 +5,7 @@ class InitialOnboardingTest(Document):
     content=ListField(DictField(),default=[])
     pass_percentage=IntField(default=0)
     duration=IntField(default=0)
+    test_type=StringField(choices=['iq','psychometric'],required=True)
     created_at=DateTimeField(default=datetime.now(timezone.utc))
     updated_at=DateTimeField(default=datetime.now(timezone.utc))
     default=BooleanField(default=False)
@@ -23,6 +24,7 @@ class InitialOnboardingTest(Document):
             "default": self.default,
             "created_at": self.created_at,
             "updated_at": self.updated_at,
+            "test_type": self.test_type,
         }
     def to_minimal_json(self):
         return {
@@ -31,6 +33,7 @@ class InitialOnboardingTest(Document):
             "pass_percentage": self.pass_percentage,
             "duration": self.duration,
             "default": self.default,
+            "test_type": self.test_type,
         }
     
     
