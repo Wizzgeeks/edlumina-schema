@@ -1,4 +1,4 @@
-from mongoengine import Document,StringField,ValidationError,BooleanField
+from mongoengine import Document,StringField,ValidationError,BooleanField,IntField
 
 class Model(Document):
     name = StringField(required=True)
@@ -6,6 +6,7 @@ class Model(Document):
     type = StringField(required=True)
     provider = StringField(choices=['gemini','openai','claude'],required=True)
     is_active = BooleanField(default=False)
+    max_tokens=IntField(required=True)
 
     
     def clean(self):
@@ -31,7 +32,8 @@ class Model(Document):
             "type":self.type,
             "provider":self.provider,
             "api_key":self.api_key,
-            "is_active":self.is_active if self.is_active else False
+            "is_active":self.is_active if self.is_active else False,
+            "max_tokens":self.max_tokens
         }
     
         
