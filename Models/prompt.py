@@ -7,6 +7,7 @@ class Prompt(Document):
     prompt=StringField()
     json_mode=BooleanField(default=False)
     json_schema=StringField()
+    persona=StringField()
     json_schema_google=StringField()
     types=StringField(choices=['mcq','match','fillups','content','expand','update','trueorfalse','analysis'],required=True)
     default=BooleanField(default=False)
@@ -27,7 +28,10 @@ class Prompt(Document):
             "created_by":self.created_by if self.created_by else "",
             "json_mode": self.json_mode,
             "created_at": self.created_at if self.created_at else None,
-            "updated_at": self.updated_at if self.updated_at else None
+            "updated_at": self.updated_at if self.updated_at else None,
+            "persona": self.persona if self.persona else "",
+            "types": self.types,
+            "default": self.default
         }
 
 
