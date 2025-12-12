@@ -19,7 +19,7 @@ class InitialOnboardingTest(Document):
             "id": str(self.id),
             "name": self.name,
             "content": self.content or [],
-            "pass_percentage": self.pass_percentage,
+            # "pass_percentage": self.pass_percentage,
             "duration": self.duration,
             "default": self.default,
             "created_at": self.created_at,
@@ -30,10 +30,12 @@ class InitialOnboardingTest(Document):
         return {
             "id": str(self.id),
             "name": self.name,
-            "pass_percentage": self.pass_percentage,
+            # "pass_percentage": self.pass_percentage,
             "duration": self.duration,
             "default": self.default,
             "test_type": self.test_type,
+            "created_at": self.created_at,
+            "updated_at": self.updated_at,
         }
     
     
