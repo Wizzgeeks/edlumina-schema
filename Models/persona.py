@@ -22,12 +22,16 @@ class Persona(Document):
             "name": self.name,
             "persona": self.persona,
             "persona_type": self.persona_type,
-            "is_active": self.is_active
+            "is_active": self.is_active,
+            "created_at": self.created_at,
+            "updated_at": self.updated_at,
         }
     def to_minimal_json(self):
         return {
             "id": str(self.id),
             "name": self.name,
             "persona_type": self.persona_type,
-            "is_active": self.is_active
+            "is_active": self.is_active,
+            "created_at": self.created_at,
+            "updated_at": self.updated_at,
         }
