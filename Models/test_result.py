@@ -28,6 +28,7 @@ class TestResult(Document):
     completed=BooleanField()
     no_of_questions_attempted=IntField()
     no_of_question_correct=IntField()
+    feedback=StringField()
     total_questions=IntField()
     created_by=StringField()
     updated_by = StringField()
@@ -56,6 +57,7 @@ class TestResult(Document):
             "total_questions": self.total_questions,
             "created_at": self.created_at,
             "updated_at": self.updated_at,
+            "feedback": self.feedback,
         }
 
 
