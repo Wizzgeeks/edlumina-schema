@@ -28,7 +28,7 @@ class TestResult(Document):
     completed=BooleanField()
     no_of_questions_attempted=IntField()
     no_of_question_correct=IntField()
-    feedback=StringField()
+    feedback=ListField(DictField(),default=[])
     total_questions=IntField()
     created_by=StringField()
     updated_by = StringField()
