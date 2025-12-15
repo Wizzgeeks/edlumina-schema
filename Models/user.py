@@ -47,13 +47,15 @@ class Users(Document):
     def to_user(self):
         return {
             "id": str(self.id),
-            "institution": self.institution.to_json() if self.institution else None,
-            "course": self.course.to_json() if self.course else None,
+            "institution_name": self.institution.name if self.institution else None,
+            "intitution_type": self.institution.type if self.institution else None,
+            "course_name": self.course.name if self.course else None,
+            "batch_name": self.batch.name if self.batch else None,
             "name": self.name,
             "email": self.email if self.email else "",
             "register_no": self.register_no if self.register_no else "",
-            "auth_token": self.auth_token if self.auth_token else "",
-           
+            "grade":self.grade if self.grade else "",   
+            "preference":self.preference if self.preference else [],           
         }
     def to_admin(self):
         return {
