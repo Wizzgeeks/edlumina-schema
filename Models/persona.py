@@ -1,4 +1,5 @@
-from mongoengine import Document, StringField  ,BooleanField
+from mongoengine import Document, StringField  ,BooleanField,DateTimeField
+from datetime import datetime,timezone
 
 
 class Persona(Document):
@@ -6,7 +7,14 @@ class Persona(Document):
     persona=StringField()
     persona_type=StringField(choices=['ai_tutor','analysis_validation'],required=True)
     is_active= BooleanField(default=False)
+    created_by=StringField()
+    updated_by = StringField()
+    created_at = DateTimeField(default=lambda: datetime.now(timezone.utc))
+    updated_at = DateTimeField(default=lambda: datetime.now(timezone.utc))
 
+    def save(self, *args, **kwargs):
+        self.updated_at = datetime.now(timezone.utc)
+        return super(Persona, self).save(*args, **kwargs)
 
     def to_json(self):
         return {
