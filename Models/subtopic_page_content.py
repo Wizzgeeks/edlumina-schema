@@ -45,20 +45,47 @@ class SubtopicPageContent(Document):
     def to_json(self):
         return {
             "id": str(self.id),
-            "course": self.course.to_json() if self.course else None,
-            "subject": self.subject.to_json()if self.subject else None,
-            "topic": self.topic.to_json() if self.topic else None,
+            # "course": self.course.to_json() if self.course else None,
+            # "subject": self.subject.to_json()if self.subject else None,
+            # "topic": self.topic.to_json() if self.topic else None,
             "question_bank": str(self.question_bank.to_json()) if self.question_bank else None,
             "sequence":self.sequence,
             "name": self.name,
             "page_type": self.page_type,
             "content": self.content,
+          
             "is_deleted": self.is_deleted,
             "created_at": self.created_at,
             "updated_at": self.updated_at,
             "duration":self.duration,
             "pass_percentage":self.pass_percentage
             
+        }
+    def to_json_medium(self):
+        return {
+            "id": str(self.id),
+            "sequence":self.sequence,
+            "name": self.name,
+            "page_type": self.page_type,
+            "medium_content": self.medium_content if self.medium_content else [],
+            "is_deleted": self.is_deleted,
+            "created_at": self.created_at,
+            "updated_at": self.updated_at,
+            "duration":self.duration,
+            "pass_percentage":self.pass_percentage
+        }
+    def to_json_hard(self):
+        return {
+            "id": str(self.id),
+            "sequence":self.sequence,
+            "name": self.name,
+            "page_type": self.page_type,
+            "medium_content": self.medium_content if self.medium_content else [],
+            "is_deleted": self.is_deleted,
+            "created_at": self.created_at,
+            "updated_at": self.updated_at,
+            "duration":self.duration,
+            "pass_percentage":self.pass_percentage
         }
     def to_json_difficulty(self, difficulty_level):
         content_map={
@@ -68,9 +95,9 @@ class SubtopicPageContent(Document):
         }
         return {
             "id": str(self.id),
-            "course": self.course.to_json() if self.course else None,
-            "subject": self.subject.to_json()if self.subject else None,
-            "topic": self.topic.to_json() if self.topic else None,
+            # "course": self.course.to_json() if self.course else None,
+            # "subject": self.subject.to_json()if self.subject else None,
+            # "topic": self.topic.to_json() if self.topic else None,
             "question_bank": str(self.question_bank.to_json()) if self.question_bank else None,
             "sequence":self.sequence,
             "name": self.name,
