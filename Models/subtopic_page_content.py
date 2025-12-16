@@ -80,7 +80,7 @@ class SubtopicPageContent(Document):
             "sequence":self.sequence,
             "name": self.name,
             "page_type": self.page_type,
-            "medium_content": self.medium_content if self.medium_content else [],
+            "hard_content": self.hard_content if self.hard_content else [],
             "is_deleted": self.is_deleted,
             "created_at": self.created_at,
             "updated_at": self.updated_at,
