@@ -15,7 +15,7 @@ class InstitutionCourse(Document):
     def to_json(self):
         return {
             "id": str(self.id),
-            "institution": self.institution.to_json() if self.institution else None,
+            # "institution": self.institution.to_json() if self.institution else None,
             "course": [
                 c.to_json() for c in self.course
                 if hasattr(c, "is_deleted") and not getattr(c, "is_deleted", False)

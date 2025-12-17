@@ -34,7 +34,7 @@ class Users(Document):
             # "course": self.course.to_json() if self.course else None,
             # "batch": self.batch.to_json() if self.batch else None,
            "batch_name": self.batch.name if self.batch else None,
-           "bacth_assigned": True if self.batch else False,
+           "batch_assigned": True if self.batch else False,
             "name": self.name,
             "email": self.email if self.email else "",
             "register_no": self.register_no if self.register_no else "",
