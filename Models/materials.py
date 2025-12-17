@@ -8,7 +8,7 @@ class Materials(Document):
     name =StringField(required=True)
     content =StringField(required=True)
     publish=BooleanField(default=False)
-    materials_type=StringField(choices=['pdf','videos'], required=True)
+    materials_type = StringField(choices=["pdf", "videos", "image", "ppt", "audio"],required=True)
     created_by=StringField()
     updated_by = StringField()
     created_at = DateTimeField(default=lambda: datetime.now(timezone.utc))
