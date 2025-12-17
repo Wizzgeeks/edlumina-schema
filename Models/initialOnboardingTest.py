@@ -2,8 +2,7 @@ from mongoengine import Document, ReferenceField, DateTimeField, BooleanField, C
 from datetime import datetime, timezone
 class InitialOnboardingTest(Document):
     name=StringField(required=True)
-    content=ListField(DictField(),default=[])
-    pass_percentage=IntField(default=0)
+    content=ListField(DictField(),defaulst=[])
     duration=IntField(default=0)
     test_type=StringField(choices=['iq','psychometric'],required=True)
     created_at=DateTimeField(default=datetime.now(timezone.utc))

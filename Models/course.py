@@ -4,6 +4,8 @@ from Models.initialOnboardingTest import InitialOnboardingTest
 
 class Course(Document):
     initialOnboardingTest=ReferenceField(InitialOnboardingTest,reverse_delete_rule=NULLIFY)
+    psychometricTest=ReferenceField(InitialOnboardingTest,reverse_delete_rule=NULLIFY)
+    iqTest=ReferenceField(InitialOnboardingTest,reverse_delete_rule=NULLIFY)
     name = StringField(required=True,unique=True)
     key = StringField(required=True, unique=True)
     is_deleted = BooleanField(default=False)
@@ -27,6 +29,8 @@ class Course(Document):
             "key": self.key,
             "publish": self.publish,
             "initialOnboardingTest":str(self.initialOnboardingTest.id) if self.initialOnboardingTest else None,
+            "psychometricTest":str(self.psychometricTest.id) if self.psychometricTest else None,
+            "iqTest":str(self.iqTest.id) if self.iqTest else None,
             "created_at": self.created_at,
             "updated_at": self.updated_at,
         }
