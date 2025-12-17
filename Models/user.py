@@ -30,8 +30,8 @@ class Users(Document):
     def to_json(self):
         return {
             "id": str(self.id),
-            "institution": self.institution.to_json() if self.institution else None,
-            "course": self.course.to_json() if self.course else None,
+            # "institution": self.institution.to_json() if self.institution else None,
+            # "course": self.course.to_json() if self.course else None,
             "batch": self.batch.to_json() if self.batch else None,
             "name": self.name,
             "email": self.email if self.email else "",
