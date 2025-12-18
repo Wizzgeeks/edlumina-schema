@@ -22,7 +22,7 @@ class SubjectInstitutionPageContent(Document):
     start_end=BooleanField(default=False)
     sequence=IntField(default=0)
 
-    child_pages = ListField(ReferenceField("SubjectPageContent", reverse_delete_rule=NULLIFY))
+    child_pages = ListField(ReferenceField("SubjectInstitutionPageContent", reverse_delete_rule=NULLIFY))
     hierarcy_level=IntField(default=0)
     duration=IntField(default=0)
     pass_percentage=IntField(default=0)
