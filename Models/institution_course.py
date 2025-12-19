@@ -1,11 +1,13 @@
 from Models.institution import Institution
 from Models.course import Course
-from mongoengine import Document,ReferenceField,DateTimeField,BooleanField,ListField,NULLIFY
+from mongoengine import Document,ReferenceField,DateTimeField,BooleanField,ListField,NULLIFY,StringField
 from datetime import datetime, timezone
 
 class InstitutionCourse(Document):
     institution = ReferenceField(Institution, required=True)
     course =ListField(ReferenceField(Course,reverse_delete_rule=NULLIFY))
+    created_by=StringField()
+    updated_by = StringField()
     created_at = DateTimeField(default=datetime.now(timezone.utc))
     updated_at = DateTimeField(default=datetime.now(timezone.utc))
     is_active = BooleanField(default=True)
