@@ -8,7 +8,7 @@ class SubjectCompleted(Document):
     course = ReferenceField(Course, reverse_delete_rule=CASCADE, required=True)
     subject = ReferenceField(Subject, reverse_delete_rule=CASCADE, required=True)
     user = ReferenceField(Users, reverse_delete_rule=CASCADE, required=True)
-    completed = BooleanField(default=True)
+    completed = BooleanField(default=False)
     total_page_count=IntField(default=0)
     completed_page_count=IntField(default=0)
     total_topic_count=IntField(default=0)

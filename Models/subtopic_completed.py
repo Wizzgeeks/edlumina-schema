@@ -12,7 +12,7 @@ class SubtopicCompleted(Document):
     topic = ReferenceField(Topic, reverse_delete_rule=CASCADE, required=True)
     subtopic = ReferenceField(Subtopic, reverse_delete_rule=CASCADE, required=True)
     user = ReferenceField(Users, reverse_delete_rule=CASCADE, required=True)
-    completed = BooleanField(default=True)
+    completed = BooleanField(default=False)
     total_page_count=IntField(default=0)
     completed_page_count=IntField(default=0)
     created_at = DateTimeField(default=lambda: datetime.now(timezone.utc))

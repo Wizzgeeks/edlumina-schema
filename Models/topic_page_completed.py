@@ -12,7 +12,7 @@ class TopicPageCompleted(Document):
     topic = ReferenceField(Topic, reverse_delete_rule=CASCADE, required=True)
     topic_page_content = ReferenceField(TopicPageContent, reverse_delete_rule=CASCADE, required=True)
     user = ReferenceField(Users, reverse_delete_rule=CASCADE, required=True)
-    completed = BooleanField(default=True)
+    completed = BooleanField(default=False)
     hierarcy_level=IntField(default=0)
     page_type=StringField(choices=['content','quiz','question_bank','test','mcq','match','fillups','content','expand','update','trueorfalse','analysis'], required=True)
     created_at = DateTimeField(default=lambda: datetime.now(timezone.utc))
