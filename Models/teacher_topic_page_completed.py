@@ -11,7 +11,7 @@ class TeacherTopicPageCompleted(Document):
     subject = ReferenceField(Subject, reverse_delete_rule=CASCADE, required=True)
     topic = ReferenceField(Topic, reverse_delete_rule=CASCADE, required=True)
     topic_page_content = ReferenceField(TopicPageContent, reverse_delete_rule=CASCADE, required=True)
-    user = ReferenceField(InstitutionUsers, reverse_delete_rule=CASCADE, required=True)
+    teacher = ReferenceField(InstitutionUsers, reverse_delete_rule=CASCADE, required=True)
     completed = BooleanField(default=False)
     hierarcy_level=IntField(default=0)
     page_type=StringField(choices=['content','quiz','question_bank','test','mcq','match','fillups','content','expand','update','trueorfalse','analysis'], required=True)

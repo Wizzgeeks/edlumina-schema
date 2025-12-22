@@ -9,7 +9,7 @@ class TeacherTopicCompleted(Document):
     course = ReferenceField(Course, reverse_delete_rule=CASCADE, required=True)
     subject = ReferenceField(Subject, reverse_delete_rule=CASCADE, required=True)
     topic = ReferenceField(Topic, reverse_delete_rule=CASCADE, required=True)
-    user = ReferenceField(InstitutionUsers, reverse_delete_rule=CASCADE, required=True)
+    teacher = ReferenceField(InstitutionUsers, reverse_delete_rule=CASCADE, required=True)
     completed = BooleanField(default=False)
     total_page_count=IntField(default=0)
     completed_page_count=IntField(default=0)
