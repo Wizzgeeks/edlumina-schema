@@ -15,6 +15,8 @@ class InstitutionUsers(Document):
     updated_at = DateTimeField(default=lambda: datetime.now(timezone.utc))
     created_by=StringField()
     updated_by=StringField()
+    secrect_key=StringField()
+    secrect_key_exp=DateTimeField()
 
     def save(self, *args, **kwargs):
         self.updated_at = datetime.now(timezone.utc)
