@@ -24,6 +24,12 @@ class Users(Document):
     updated_at=DateTimeField(default=lambda: datetime.now(timezone.utc))
     created_by=StringField()
     updated_by=StringField()
+    login_dates = ListField(StringField())
+    streak_count = IntField(default=0)
+    total_coins = IntField(default=0)
+    total_xp =  IntField(default =0)
+    badge_name = StringField(default="First Step")
+    level = IntField(default=1)   
     
     def save(self, *args, **kwargs):
         self.updated_at = datetime.now(timezone.utc)
