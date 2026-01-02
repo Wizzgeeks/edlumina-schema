@@ -2,10 +2,12 @@ from mongoengine import Document, ReferenceField, DateTimeField, StringField, Bo
 from datetime import datetime, timezone
 from Models.course import Course
 from Models.institution_users import InstitutionUsers
+from Models.batches import Batches
 
 class TeacherCourseCompleted(Document):
     course = ReferenceField(Course, reverse_delete_rule=CASCADE, required=True)
-    teacher = ReferenceField(InstitutionUsers, reverse_delete_rule=CASCADE, required=True)
+    teacher = StringField()
+    batches=ReferenceField(Batches, reverse_delete_rule=CASCADE, required=True)
     completed = BooleanField(default=False)
     total_page_count=IntField(default=0)
     completed_page_count=IntField(default=0)

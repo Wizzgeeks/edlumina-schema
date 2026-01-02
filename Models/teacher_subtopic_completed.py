@@ -5,13 +5,15 @@ from Models.institution_users import InstitutionUsers
 from Models.topic import Topic
 from Models.course import Course
 from Models.subtopic import Subtopic
+from Models.batches import Batches
 
 class TeacherSubtopicCompleted(Document):
     course = ReferenceField(Course, reverse_delete_rule=CASCADE, required=True)
     subject = ReferenceField(Subject, reverse_delete_rule=CASCADE, required=True)
     topic = ReferenceField(Topic, reverse_delete_rule=CASCADE, required=True)
     subtopic = ReferenceField(Subtopic, reverse_delete_rule=CASCADE, required=True)
-    teacher = ReferenceField(InstitutionUsers, reverse_delete_rule=CASCADE, required=True)
+    teacher = StringField()
+    batches=ReferenceField(Batches, reverse_delete_rule=CASCADE, required=True)
     completed = BooleanField(default=False)
     total_page_count=IntField(default=0)
     completed_page_count=IntField(default=0)

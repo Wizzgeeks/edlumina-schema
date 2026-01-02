@@ -5,13 +5,15 @@ from Models.institution_users import InstitutionUsers
 from Models.course import Course
 from Models.subject import Subject
 from Models.topic import Topic
+from Models.batches import Batches
 
 class TeacherTopicPageCompleted(Document):
     course = ReferenceField(Course, reverse_delete_rule=CASCADE, required=True)
     subject = ReferenceField(Subject, reverse_delete_rule=CASCADE, required=True)
     topic = ReferenceField(Topic, reverse_delete_rule=CASCADE, required=True)
     topic_page_content = ReferenceField(TopicPageContent, reverse_delete_rule=CASCADE, required=True)
-    teacher = ReferenceField(InstitutionUsers, reverse_delete_rule=CASCADE, required=True)
+    teacher = StringField()
+    batches=ReferenceField(Batches, reverse_delete_rule=CASCADE, required=True)
     completed = BooleanField(default=False)
     hierarcy_level=IntField(default=0)
     page_type=StringField(choices=['content','quiz','question_bank','test','mcq','match','fillups','content','expand','update','trueorfalse','analysis'], required=True)
