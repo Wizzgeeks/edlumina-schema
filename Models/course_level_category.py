@@ -1,9 +1,11 @@
 from mongoengine import CASCADE, NULLIFY, Document,StringField,BooleanField,EnumField,ReferenceField,ListField,DictField,EmbeddedDocument,DateTimeField,IntField,EmbeddedDocumentField
 from datetime import datetime,timezone
 from Models.course_page_content import CoursePageContent
+from Models.course import Course
 
 
 class CourseLevelCategory(Document):
+    course=ReferenceField(Course,reverse_delete_rule=CASCADE)
     page_content=ReferenceField(CoursePageContent,reverse_delete_rule=CASCADE)
     direct=IntField(default=0)
     reasoning=IntField(default=0)
