@@ -14,6 +14,9 @@ class CoursePageContent(Document):
     compulsory=BooleanField(default=False)
     start_initial=BooleanField(default=False)
     start_end=BooleanField(default=False)
+    book_id=StringField()
+    book_name=StringField()
+    book_path=StringField()
 
 
     child_pages = ListField(ReferenceField("CoursePageContent", reverse_delete_rule=NULLIFY))
@@ -45,7 +48,10 @@ class CoursePageContent(Document):
             "created_at": self.created_at,
             "updated_at": self.updated_at,
             "duration":self.duration,
-            "pass_percentage":self.pass_percentage
+            "pass_percentage":self.pass_percentage,
+            "book_id": self.book_id,
+            "book_name": self.book_name,
+            "book_path": self.book_path
         }
     def to_json_medium(self):
         return {
@@ -105,5 +111,8 @@ class CoursePageContent(Document):
             "sequence": self.sequence,
             "child_pages": [cp.to_minimal_json() for cp in self.child_pages] if self.child_pages else [],
             "duration":self.duration,
-            "pass_percentage":self.pass_percentage
+            "pass_percentage":self.pass_percentage,
+            "book_id": self.book_id,
+            "book_name": self.book_name,
+            "book_path": self.book_path
         }

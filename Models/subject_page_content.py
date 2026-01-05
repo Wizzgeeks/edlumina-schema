@@ -26,7 +26,9 @@ class SubjectPageContent(Document):
     hierarcy_level=IntField(default=0)
     duration=IntField(default=0)
     pass_percentage=IntField(default=0)
-
+    book_id=StringField()
+    book_name=StringField()
+    book_path=StringField()
 
     is_deleted=BooleanField(default=False)
     created_by=StringField()
@@ -50,7 +52,10 @@ class SubjectPageContent(Document):
             "created_at": self.created_at,
             "updated_at": self.updated_at,
             "duration":self.duration,
-            "pass_percentage":self.pass_percentage
+            "pass_percentage":self.pass_percentage,
+            "book_id": self.book_id,
+            "book_name": self.book_name,
+            "book_path": self.book_path
         }
     def to_json_medium(self):
         return {
@@ -111,5 +116,8 @@ class SubjectPageContent(Document):
             "child_pages": [cp.to_minimal_json() for cp in self.child_pages] if self.child_pages else [],
             "hierarcy_level": self.hierarcy_level,
             "duration":self.duration,
-            "pass_percentage":self.pass_percentage
+            "pass_percentage":self.pass_percentage,
+            "book_id": self.book_id,
+            "book_name": self.book_name,
+            "book_path": self.book_path
         }

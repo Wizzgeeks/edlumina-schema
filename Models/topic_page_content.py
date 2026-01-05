@@ -22,6 +22,9 @@ class TopicPageContent(Document):
     start_initial=BooleanField(default=False)
     start_end=BooleanField(default=False)
     sequence=IntField(default=0)
+    book_id=StringField()
+    book_name=StringField()
+    book_path=StringField()
 
     child_pages = ListField(ReferenceField("TopicPageContent", reverse_delete_rule=NULLIFY))
     hierarcy_level=IntField(default=0)
@@ -101,7 +104,10 @@ class TopicPageContent(Document):
             "created_at": self.created_at,
             "updated_at": self.updated_at,
             "duration":self.duration,
-            "pass_percentage":self.pass_percentage
+            "pass_percentage":self.pass_percentage,
+            " book_id": self.book_id,
+            "book_name": self.book_name,
+            "book_path": self.book_path
             
         }
     def to_minimal_json(self):
@@ -113,5 +119,8 @@ class TopicPageContent(Document):
             "child_pages": [cp.to_minimal_json() for cp in self.child_pages] if self.child_pages else [],
             "hierarcy_level": self.hierarcy_level or 0,
             "duration":self.duration,
-            "pass_percentage":self.pass_percentage
+            "pass_percentage":self.pass_percentage,
+            " book_id": self.book_id,
+            "book_name": self.book_name,
+            "book_path": self.book_path
         }

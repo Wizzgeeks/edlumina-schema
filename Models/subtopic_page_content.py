@@ -32,7 +32,9 @@ class SubtopicPageContent(Document):
 
     child_pages = ListField(ReferenceField("SubtopicPageContent", reverse_delete_rule=NULLIFY))
     hierarcy_level=IntField(default=0)
-
+    book_id=StringField()
+    book_name=StringField()
+    book_path=StringField()
 
     is_deleted=BooleanField(default=False)
     created_by=StringField()
@@ -58,7 +60,10 @@ class SubtopicPageContent(Document):
             "created_at": self.created_at,
             "updated_at": self.updated_at,
             "duration":self.duration,
-            "pass_percentage":self.pass_percentage
+            "pass_percentage":self.pass_percentage,
+            "book_id": self.book_id,
+            "book_name": self.book_name,
+            "book_path": self.book_path
             
         }
     def to_json_medium(self):
@@ -120,6 +125,9 @@ class SubtopicPageContent(Document):
             "child_pages": [cp.to_minimal_json() for cp in self.child_pages] if self.child_pages else [],
             "hierarcy_level": self.hierarcy_level or 0,
             "duration":self.duration if self.duration else 0,
-            "pass_percentage":self.pass_percentage if self.pass_percentage else 0
+            "pass_percentage":self.pass_percentage if self.pass_percentage else 0,
+            " book_id": self.book_id,
+            "book_name": self.book_name,
+            "book_path": self.book_path
             
         }
