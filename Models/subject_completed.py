@@ -13,6 +13,7 @@ class SubjectCompleted(Document):
     completed_page_count=IntField(default=0)
     total_topic_count=IntField(default=0)
     completed_topic_count=IntField(default=0)
+    time_spent=IntField(default=0)
     created_at = DateTimeField(default=lambda: datetime.now(timezone.utc))
     updated_at = DateTimeField(default=lambda: datetime.now(timezone.utc))
 
@@ -31,6 +32,7 @@ class SubjectCompleted(Document):
             "completed_page_count": self.completed_page_count,
             "total_topic_count": self.total_topic_count,
             "completed_topic_count": self.completed_topic_count,
+            "time_spent": self.time_spent if self.time_spent else 0,
             "created_at": self.created_at,
             "updated_at": self.updated_at,
         }
