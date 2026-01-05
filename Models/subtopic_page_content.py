@@ -62,7 +62,15 @@ class SubtopicPageContent(Document):
             "created_at": self.created_at,
             "updated_at": self.updated_at,
             "duration":self.duration,
-            "pass_percentage":self.pass_percentage
+            "pass_percentage":self.pass_percentage,
+            "direct":self.direct if self.direct else 0, 
+            "reasoning":self.reasoning if self.reasoning else 0,
+            "critical_thinking":self.critical_thinking if self.critical_thinking else 0,
+            "application":self.application if self.application else 0,
+            "direct":self.direct if self.direct else 0, 
+            "reasoning":self.reasoning if self.reasoning else 0,
+            "critical_thinking":self.critical_thinking if self.critical_thinking else 0,
+            "application":self.application if self.application else 0
             
         }
     def to_json_medium(self):
@@ -89,7 +97,11 @@ class SubtopicPageContent(Document):
             "created_at": self.created_at,
             "updated_at": self.updated_at,
             "duration":self.duration,
-            "pass_percentage":self.pass_percentage
+            "pass_percentage":self.pass_percentage,
+            "direct":self.direct if self.direct else 0, 
+            "reasoning":self.reasoning if self.reasoning else 0,
+            "critical_thinking":self.critical_thinking if self.critical_thinking else 0,
+            "application":self.application if self.application else 0
         }
     def to_json_difficulty(self, difficulty_level):
         content_map={
@@ -112,7 +124,11 @@ class SubtopicPageContent(Document):
             "created_at": self.created_at,
             "updated_at": self.updated_at,
             "duration":self.duration,
-            "pass_percentage":self.pass_percentage
+            "pass_percentage":self.pass_percentage,
+            "direct":self.direct if self.direct else 0, 
+            "reasoning":self.reasoning if self.reasoning else 0,
+            "critical_thinking":self.critical_thinking if self.critical_thinking else 0,
+            "application":self.application if self.application else 0
             
         }
     def to_minimal_json(self):
@@ -124,6 +140,10 @@ class SubtopicPageContent(Document):
             "child_pages": [cp.to_minimal_json() for cp in self.child_pages] if self.child_pages else [],
             "hierarcy_level": self.hierarcy_level or 0,
             "duration":self.duration if self.duration else 0,
-            "pass_percentage":self.pass_percentage if self.pass_percentage else 0
+            "pass_percentage":self.pass_percentage if self.pass_percentage else 0,
+            "direct":self.direct if self.direct else 0, 
+            "reasoning":self.reasoning if self.reasoning else 0,
+            "critical_thinking":self.critical_thinking if self.critical_thinking else 0,
+            "application":self.application if self.application else 0
             
         }
