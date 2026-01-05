@@ -23,6 +23,10 @@ class CoursePageContent(Document):
     pass_percentage=IntField(default=0)
 
     sequence=IntField(default=0)
+    direct=IntField(default=0)
+    reasoning=IntField(default=0)
+    critical_thinking=IntField(default=0)
+    application=IntField(default=0)
 
     is_deleted=BooleanField(default=False)
     created_by=StringField()
@@ -46,6 +50,7 @@ class CoursePageContent(Document):
             "updated_at": self.updated_at,
             "duration":self.duration,
             "pass_percentage":self.pass_percentage
+            
         }
     def to_json_medium(self):
         return {

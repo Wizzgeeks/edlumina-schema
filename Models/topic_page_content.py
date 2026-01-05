@@ -28,6 +28,10 @@ class TopicPageContent(Document):
 
     duration=IntField(default=0)
     pass_percentage=IntField(default=0) 
+    direct=IntField(default=0)
+    reasoning=IntField(default=0)
+    critical_thinking=IntField(default=0)
+    application=IntField(default=0)
 
     is_deleted=BooleanField(default=False)
     created_by=StringField()
