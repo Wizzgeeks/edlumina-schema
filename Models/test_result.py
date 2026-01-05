@@ -26,7 +26,6 @@ class TestResult(Document):
     user=ReferenceField(Users,required=True,reverse_delete_rule=CASCADE)
     attempt_data=ListField(DictField(),default=[])
     completed=BooleanField()
-    categories=StringField()
     no_of_questions_attempted=IntField()
     no_of_question_correct=IntField()
     feedback=ListField(DictField(),default=[])
