@@ -1,36 +1,39 @@
+from typing import Required
 from mongoengine import CASCADE, NULLIFY, Document,StringField,BooleanField,EnumField,ReferenceField,ListField,DictField,EmbeddedDocument,DateTimeField,IntField,EmbeddedDocumentField
-from datetime import datetime,timezone
-from Models.topic_page_content import TopicPageContent
 from Models.course import Course
 from Models.subject import Subject
 from Models.topic import Topic
+from Models.subtopic import Subtopic
+from datetime import datetime,timezone
+from Models.user import Users
 
 
-class TopicLevelCategory(Document):
+class ActiveRecallContent(Document):
     course=ReferenceField(Course,reverse_delete_rule=CASCADE)
     subject=ReferenceField(Subject,reverse_delete_rule=CASCADE)
     topic=ReferenceField(Topic,reverse_delete_rule=CASCADE)
-    page_content=ReferenceField(TopicPageContent,reverse_delete_rule=CASCADE)
-    direct=IntField(default=0)
-    reasoning=IntField(default=0)
-    critical_thinking=IntField(default=0)
-    application=IntField(default=0)
+    subtopic=ReferenceField(Subtopic,reverse_delete_rule=CASCADE)
+    user=ReferenceField(Users,reverse_delete_rule=CASCADE)
+    completed = BooleanField(default=False)
+    layer=StringField()
+    active_date=DateTimeField()
     created_at = DateTimeField(default=lambda: datetime.now(timezone.utc))
     updated_at = DateTimeField(default=lambda: datetime.now(timezone.utc))
 
-
     def save(self, *args, **kwargs):
         self.updated_at = datetime.now(timezone.utc)
-        return super(TopicLevelCategory, self).save(*args, **kwargs)
+        return super(ActiveRecallContent, self).save(*args, **kwargs)
 
     def to_json(self):
         return{
             "id": str(self.id),
-            "page_content":str(self.page_content.id) if self.page_content else None,
-            "direct": self.direct,
-            "reasoning": self.reasoning,
-            "critical_thinking": self.critical_thinking,
-            "application": self.application,
+            "course":str(self.course.id) if self.course else None,
+            "subject":str(self.subject.id) if self.subject else None,
+            "topic":str(self.topic.id) if self.topic else None,
+            "subtopic":str(self.subtopic.id) if self.subtopic else None,
+            "user":str(self.user.id) if self.user else None,
+            "completed":self.completed, 
+            "active_date":self.active_date,
             "created_at": self.created_at,
             "updated_at": self.updated_at,            
         }
