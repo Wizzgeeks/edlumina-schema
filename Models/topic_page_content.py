@@ -25,6 +25,9 @@ class TopicPageContent(Document):
     book_id=StringField()
     book_name=StringField()
     book_path=StringField()
+    video_id=StringField()
+    video_name=StringField()
+    video_path=StringField()
 
     child_pages = ListField(ReferenceField("TopicPageContent", reverse_delete_rule=NULLIFY))
     hierarcy_level=IntField(default=0)
@@ -55,7 +58,14 @@ class TopicPageContent(Document):
             "created_at": self.created_at,
             "updated_at": self.updated_at,
             "duration":self.duration,
-            "pass_percentage":self.pass_percentage
+            "pass_percentage":self.pass_percentage,
+            "video_id": self.video_id,
+            "video_name": self.video_name,
+            "video_path": self.video_path,
+            "book_id": self.book_id,
+            "book_name": self.book_name,
+            "book_path": self.book_path
+
         }
     def to_json_medium(self):
         return {
@@ -105,10 +115,12 @@ class TopicPageContent(Document):
             "updated_at": self.updated_at,
             "duration":self.duration,
             "pass_percentage":self.pass_percentage,
-            " book_id": self.book_id,
+             "book_id": self.book_id,
             "book_name": self.book_name,
-            "book_path": self.book_path
-            
+            "book_path": self.book_path,
+            "video_id": self.video_id,
+            "video_name": self.video_name,
+            "video_path": self.video_path
         }
     def to_minimal_json(self):
         return {
@@ -120,7 +132,11 @@ class TopicPageContent(Document):
             "hierarcy_level": self.hierarcy_level or 0,
             "duration":self.duration,
             "pass_percentage":self.pass_percentage,
-            " book_id": self.book_id,
+            "book_id": self.book_id,
             "book_name": self.book_name,
-            "book_path": self.book_path
+            "book_path": self.book_path,
+            "video_id": self.video_id,
+            "video_name": self.video_name,
+            "video_path": self.video_path
+            
         }

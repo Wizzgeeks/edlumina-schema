@@ -35,6 +35,9 @@ class SubtopicPageContent(Document):
     book_id=StringField()
     book_name=StringField()
     book_path=StringField()
+    video_id=StringField()
+    video_name=StringField()
+    video_path=StringField()
 
     is_deleted=BooleanField(default=False)
     created_by=StringField()
@@ -63,7 +66,10 @@ class SubtopicPageContent(Document):
             "pass_percentage":self.pass_percentage,
             "book_id": self.book_id,
             "book_name": self.book_name,
-            "book_path": self.book_path
+            "book_path": self.book_path,
+            "video_id": self.video_id,
+            "video_name": self.video_name,
+            "video_path": self.video_path
             
         }
     def to_json_medium(self):
@@ -113,7 +119,13 @@ class SubtopicPageContent(Document):
             "created_at": self.created_at,
             "updated_at": self.updated_at,
             "duration":self.duration,
-            "pass_percentage":self.pass_percentage
+            "pass_percentage":self.pass_percentage,
+            "book_id": self.book_id,
+            "book_name": self.book_name,
+            "book_path": self.book_path,
+            "video_id": self.video_id,
+            "video_name": self.video_name,
+            "video_path": self.video_path
             
         }
     def to_minimal_json(self):
@@ -126,8 +138,11 @@ class SubtopicPageContent(Document):
             "hierarcy_level": self.hierarcy_level or 0,
             "duration":self.duration if self.duration else 0,
             "pass_percentage":self.pass_percentage if self.pass_percentage else 0,
-            " book_id": self.book_id,
+            "book_id": self.book_id,
             "book_name": self.book_name,
-            "book_path": self.book_path
+            "book_path": self.book_path,
+            "video_id": self.video_id,
+            "video_name": self.video_name,
+            "video_path": self.video_path
             
         }
