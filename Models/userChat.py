@@ -36,9 +36,7 @@ class UserChat(Document):
             "subject": self.subject.to_json() if self.subject else None,
             "topic": self.topic.to_json() if self.topic else None,
             "subtopic": self.subtopic.to_json() if self.subtopic else None,
-            "page_content": self.page_content.to_json() if self.page_content else None,
-            "messages": self.messages,
-            "is_active": self.is_active,
+            "messages": self.messages if self.messages else [],
             "created_at": self.created_at,
             "updated_at": self.updated_at,
         }
