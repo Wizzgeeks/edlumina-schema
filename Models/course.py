@@ -9,6 +9,7 @@ class Course(Document):
     name = StringField(required=True,unique=True)
     key = StringField(required=True, unique=True)
     is_deleted = BooleanField(default=False)
+    active_recall_interval_days= IntField(default=0)
     publish=BooleanField(default=False)
     created_by=StringField()
     updated_by = StringField()
@@ -33,4 +34,5 @@ class Course(Document):
             "iqTest":str(self.iqTest.id) if self.iqTest else None,
             "created_at": self.created_at,
             "updated_at": self.updated_at,
+            "active_recall_interval_days":self.active_recall_interval_days,
         }

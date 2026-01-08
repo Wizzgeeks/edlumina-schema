@@ -1,6 +1,6 @@
 
 from Models.course import Course
-from mongoengine import Document,StringField,ReferenceField,DateTimeField,BooleanField,CASCADE
+from mongoengine import Document,StringField,ReferenceField,DateTimeField,BooleanField,CASCADE,IntField
 from datetime import datetime,timezone
 
 class Subject(Document):
@@ -8,6 +8,8 @@ class Subject(Document):
     name = StringField(required=True)
     key = StringField(required=True, unique=True)
     is_deleted = BooleanField(default=False)
+    active_recall_interval_days= IntField(default=1)
+
     created_by=StringField()
     updated_by = StringField()
     created_at = DateTimeField(default=lambda: datetime.now(timezone.utc))

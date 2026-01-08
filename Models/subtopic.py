@@ -13,6 +13,8 @@ class Subtopic(Document):
     key=StringField(required=True, unique=True)
     sequence=IntField(default=0)
     is_deleted=BooleanField(default=False)
+    active_recall_interval_days = IntField(default=1)
+
     created_by=StringField()
     updated_by=StringField()
     created_at=DateTimeField(default=lambda: datetime.now(timezone.utc))
@@ -35,5 +37,6 @@ class Subtopic(Document):
             "is_deleted": self.is_deleted,
             "created_at": self.created_at,
             "updated_at": self.updated_at,
+            "active_recall_interval_days":self.active_recall_interval_days,
         }
 
