@@ -18,6 +18,7 @@ class UserActiveRecallTrigger(Document):
     topic = ReferenceField(Topic, reverse_delete_rule=CASCADE)
     subtopic = ReferenceField(Subtopic, reverse_delete_rule=CASCADE)
     completed_at= DateTimeField()
+    is_active = BooleanField(default=True)
     created_at = DateTimeField(default=lambda: datetime.now(timezone.utc))
     updated_at = DateTimeField(default=lambda: datetime.now(timezone.utc))
 
@@ -34,5 +35,6 @@ class UserActiveRecallTrigger(Document):
             "topic": str(self.topic.id) if self.topic else None,
             "subtopic": str(self.subtopic.id) if self.subtopic else None,
             "completed_at": self.completed_at,
+            "is_active": self.is_active,
 
         }
