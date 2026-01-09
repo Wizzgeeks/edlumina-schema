@@ -52,7 +52,6 @@ class TestResult(Document):
             "user": str(self.user.id) if self.user else None,
             "attempt_data": self.attempt_data,
             "completed": self.completed,
-            "categories": self.categories if self.categories else None,
             "no_of_questions_attempted": self.no_of_questions_attempted,
             "no_of_question_correct": self.no_of_question_correct,
             "total_questions": self.total_questions,
