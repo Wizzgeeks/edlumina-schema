@@ -20,9 +20,9 @@ class Homework(Document):
     def to_json(self):
         return {
             "id": str(self.id),
-            'teacher':str(self.teacher),
+            'teacher':str(self.teacher.id),
             "content":self.content,
-            'users':[s.to_json() for s in self.users],
+            'users':[str(s.id)for s in self.users],
             'deadline':self.deadline,
             "created_at": self.created_at,
             "updated_at": self.updated_at
