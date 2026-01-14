@@ -2,10 +2,10 @@ from mongoengine import Document, ReferenceField, DateTimeField,ListField,DictFi
 from datetime import datetime, timezone
 from Models.user import Users
 from Models.institution_users import InstitutionUsers
-
-
+from Models.batches import Batches
 
 class Homework(Document):
+    batch=ReferenceField(Batches,reverse_delete_rule=CASCADE)
     teacher=ReferenceField(InstitutionUsers,reverse_delete_rule=CASCADE)
     content=ListField(DictField(),default=[])
     users = ListField(ReferenceField(Users, reverse_delete_rule=NULLIFY))
