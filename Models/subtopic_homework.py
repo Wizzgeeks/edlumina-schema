@@ -8,7 +8,7 @@ from Models.subject import Subject
 from Models.topic import Topic
 from Models.subtopic import Subtopic
 
-class Homework(Document):
+class SubtopicHomework(Document):
     batch=ReferenceField(Batches,reverse_delete_rule=CASCADE)
     teacher=ReferenceField(InstitutionUsers,reverse_delete_rule=CASCADE)
     course=ReferenceField(Course,reverse_delete_rule=CASCADE)
@@ -24,12 +24,13 @@ class Homework(Document):
 
     def save(self, *args, **kwargs):
         self.updated_at = datetime.now(timezone.utc)
-        return super(Homework, self).save(*args, **kwargs)
+        return super(SubtopicHomework, self).save(*args, **kwargs)
 
     def to_json(self):
         return {
             "id": str(self.id),
             'teacher':str(self.teacher.id),
+            "name":self.name,
             "content":self.content,
             'users':[str(s.id)for s in self.users],
             'deadline':self.deadline,
