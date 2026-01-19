@@ -9,12 +9,12 @@ from Models.topic import Topic
 from Models.subtopic import Subtopic
 
 class SubtopicHomework(Document):
-    batch=ReferenceField(Batches,reverse_delete_rule=CASCADE)
-    teacher=ReferenceField(InstitutionUsers,reverse_delete_rule=CASCADE)
-    course=ReferenceField(Course,reverse_delete_rule=CASCADE)
-    subject=ReferenceField(Subject, reverse_delete_rule=CASCADE)
-    topic=ReferenceField(Topic, reverse_delete_rule=CASCADE)
-    subtopic=ReferenceField(Subtopic,reverse_delete_rule=CASCADE)
+    batch=ReferenceField(Batches,required=True,reverse_delete_rule=CASCADE)
+    teacher=ReferenceField(InstitutionUsers,required=True,reverse_delete_rule=CASCADE)
+    course=ReferenceField(Course,required=True,reverse_delete_rule=CASCADE)
+    subject=ReferenceField(Subject,required=True, reverse_delete_rule=CASCADE)
+    topic=ReferenceField(Topic,required=True, reverse_delete_rule=CASCADE)
+    subtopic=ReferenceField(Subtopic,required=True,reverse_delete_rule=CASCADE)
     name=StringField()
     content=ListField(DictField(),default=[])
     users = ListField(ReferenceField(Users, reverse_delete_rule=NULLIFY))
