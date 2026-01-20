@@ -34,3 +34,11 @@ class HomeworkCompleted(Document):
             "no_of_questions_attempted": self.no_of_questions_attempted,
             "no_of_question_correct": self.no_of_question_correct,
         }
+    
+    def to_user_list(self):
+        return {
+            "id": str(self.id),
+            "user": self.user if self.user else None,
+            "no_of_questions_attempted": self.no_of_questions_attempted,
+            "no_of_question_correct": self.no_of_question_correct,
+        }
