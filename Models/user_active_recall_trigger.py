@@ -37,5 +37,6 @@ class UserActiveRecallTrigger(Document):
             "subtopic": str(self.subtopic.id) if self.subtopic else None,
             "completed_at": self.completed_at,
             "is_active": self.is_active,
+            "completed":self.completed,
 
         }
