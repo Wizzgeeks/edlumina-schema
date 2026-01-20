@@ -42,6 +42,7 @@ class TopicHomework(Document):
             'teacher':str(self.teacher.id),
             "name":self.name,
             "content":self.content,
+            "level":"topic",
             'deadline':self.deadline,
             "created_at": self.created_at,
             "updated_at": self.updated_at

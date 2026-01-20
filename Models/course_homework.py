@@ -39,6 +39,7 @@ class CourseHomework(Document):
             "name":self.name,
             "content":self.content,
             'deadline':self.deadline,
+            "level":"course",
             "created_at": self.created_at,
             "updated_at": self.updated_at
         }

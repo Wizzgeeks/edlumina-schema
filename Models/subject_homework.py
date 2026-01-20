@@ -41,6 +41,7 @@ class SubjectHomework(Document):
             "name":self.name,
             "content":self.content,
             'deadline':self.deadline,
+            "level":"subject",
             "created_at": self.created_at,
             "updated_at": self.updated_at
         }
