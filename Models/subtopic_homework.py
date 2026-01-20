@@ -37,3 +37,14 @@ class SubtopicHomework(Document):
             "created_at": self.created_at,
             "updated_at": self.updated_at
         }
+    
+    def to_user_homework(self):
+        return {
+            "id": str(self.id),
+            'teacher':str(self.teacher.id),
+            "name":self.name,
+            "content":self.content,
+            'deadline':self.deadline,
+            "created_at": self.created_at,
+            "updated_at": self.updated_at
+        }
