@@ -22,9 +22,9 @@ from Models.subtopic_page_content import SubtopicPageContent
 class EvalBook(Document):
 
     course = ReferenceField(Course, reverse_delete_rule=CASCADE)
-    subjects = ListField(ReferenceField(Subject, reverse_delete_rule=CASCADE))
-    topics = ListField(ReferenceField(Topic, reverse_delete_rule=CASCADE))
-    subtopic = ListField(ReferenceField(Subtopic, reverse_delete_rule=CASCADE))
+    subjects = ReferenceField(Subject, reverse_delete_rule=CASCADE)
+    topics = ReferenceField(Topic, reverse_delete_rule=CASCADE)
+    subtopic = ReferenceField(Subtopic, reverse_delete_rule=CASCADE)
 
     course_pages = ListField(ReferenceField(CoursePageContent,reverse_delete_rule=NULLIFY))
     subject_pages = ListField(ReferenceField(SubjectPageContent,reverse_delete_rule=NULLIFY))
