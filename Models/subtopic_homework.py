@@ -50,7 +50,6 @@ class SubtopicHomework(Document):
             "updated_at": self.updated_at
         }
     
-    
     def to_homework_json(self):
         return {
             "id": str(self.id),
