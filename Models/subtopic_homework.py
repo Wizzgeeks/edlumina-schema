@@ -43,9 +43,21 @@ class SubtopicHomework(Document):
             "id": str(self.id),
             'teacher':str(self.teacher.id),
             "name":self.name,
-            "content":self.content,
+            # "content":self.content,
             "level":"subtopic",
             'deadline':self.deadline,
+            "created_at": self.created_at,
+            "updated_at": self.updated_at
+        }
+    
+    def to_homework_json(self):
+        return {
+            "id": str(self.id),
+            'teacher':str(self.teacher.id),
+            "name":self.name,
+            "content":self.content,
+            'deadline':self.deadline,
+            "level":"subtopic",
             "created_at": self.created_at,
             "updated_at": self.updated_at
         }
