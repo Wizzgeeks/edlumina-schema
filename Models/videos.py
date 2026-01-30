@@ -6,7 +6,7 @@ class Videos(Document):
     title = StringField(required=True)
     description = StringField()
     source_type = StringField(
-        choices=["s3", "youtube", "public_url"],
+        choices=["azure", "youtube", "public_url"],
         required=True
     )
     video_url = StringField(required=True)
