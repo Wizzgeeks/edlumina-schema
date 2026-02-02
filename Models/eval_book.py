@@ -49,12 +49,24 @@ class EvalBook(Document):
     def to_json(self):
         return {
             "id": str(self.id),
+
             "book_id": self.book_id,
             "book_name": self.book_name,
+
             "course": str(self.course.id) if self.course else None,
-            "subjects": [str(s.id) for s in self.subjects],
-            "topics": [str(t.id) for t in self.topics],
-            "subtopics": [str(st.id) for st in self.subtopic],
+            "subject": str(self.subjects.id) if self.subjects else None,
+            "topic": str(self.topics.id) if self.topics else None,
+            "subtopic": str(self.subtopic.id) if self.subtopic else None,
+
+            "course_pages": [str(cp.id) for cp in self.course_pages],
+            "subject_pages": [str(sp.id) for sp in self.subject_pages],
+            "topic_pages": [str(tp.id) for tp in self.topic_pages],
+            "subtopic_pages": [str(stp.id) for stp in self.subtopic_pages],
+
+            "created_by": self.created_by,
+            "updated_by": self.updated_by,
+
             "created_at": self.created_at,
-            "updated_at": self.updated_at,
+            "updated_at": self.updated_at
         }
+
