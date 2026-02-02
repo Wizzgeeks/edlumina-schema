@@ -54,7 +54,7 @@ class EvalBook(Document):
             "course": str(self.course.id) if self.course else None,
             "subjects": [str(s.id) for s in self.subjects],
             "topics": [str(t.id) for t in self.topics],
-            "subtopics": [str(st.id) for st in self.subtopics],
-            "created_at": self.created_at.isoformat(),
-            "updated_at": self.updated_at.isoformat(),
+            "subtopics": [str(st.id) for st in self.subtopic],
+            "created_at": self.created_at,
+            "updated_at": self.updated_at,
         }

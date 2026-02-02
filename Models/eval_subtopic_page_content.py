@@ -14,7 +14,8 @@ class EvalSubtopicPageContent(Document):
     is_evaluated = BooleanField(default=False)
     evalution_score=DictField()
     overall_score = IntField(min_value=0, max_value=10, required=True)
-
+    eval_by_book=BooleanField(default=False)
+    
     created_at = DateTimeField(default=lambda: datetime.now(timezone.utc))
     updated_at = DateTimeField(default=lambda: datetime.now(timezone.utc))
     created_by =StringField()
