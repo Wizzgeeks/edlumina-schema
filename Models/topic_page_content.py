@@ -11,7 +11,6 @@ class TopicPageContent(Document):
     subject=ReferenceField(Subject, required=True, reverse_delete_rule=CASCADE)
     topic=ReferenceField(Topic, required=True, reverse_delete_rule=CASCADE)
     question_bank=ReferenceField(QuestionBank)
-    
     name=StringField(required=True)
     page_type=StringField(choices=['content','quiz','question_bank','test','mcq','match','fillups','content','expand','update','trueorfalse','analysis','active_recall','active_recall_content','active_recall_test'], required=True)
     content=ListField(DictField(),default=[])

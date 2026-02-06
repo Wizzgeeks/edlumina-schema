@@ -3,7 +3,7 @@ from datetime import datetime,timezone
 from Models.course import Course
 from Models.user import Users
 from Models.subject import Subject
-from Models.course_page_content import CoursePageContent
+from Models.subject_page_content import SubjectPageContent
 
 class UserSubjectPersonalizedContent(Document):
     course = ReferenceField(Course, required=True,reverse_delete_rule=CASCADE)
@@ -11,7 +11,7 @@ class UserSubjectPersonalizedContent(Document):
     user = ReferenceField(Users, required=True)
     name = StringField(required=True)
     content = ListField(DictField())
-    page_id=ReferenceField(CoursePageContent,required=True)
+    page_id=ReferenceField(SubjectPageContent,required=True)
     created_at = DateTimeField(default=lambda: datetime.now(timezone.utc))
     updated_at = DateTimeField(default=lambda: datetime.now(timezone.utc))
 
