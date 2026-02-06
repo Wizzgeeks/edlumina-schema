@@ -31,7 +31,8 @@ class Users(Document):
     badge_name = StringField(default="First Step")
     level = IntField(default=1)
     dashboard_feedback = DictField()
-    dashboard_feedback_generated_at = DateTimeField(default=lambda: datetime.now(timezone.utc))     
+    dashboard_feedback_generated_at = DateTimeField(default=lambda: datetime.now(timezone.utc)) 
+    premium = BooleanField(default=False)    
     
     def save(self, *args, **kwargs):
         self.updated_at = datetime.now(timezone.utc)
@@ -71,6 +72,7 @@ class Users(Document):
             "preference":self.preference if self.preference else [],  
             "test_page_preference":self.test_page_preference if self.test_page_preference else "easy",
             "ai_teaching_preference":self.ai_teaching_preference if self.ai_teaching_preference else "easy",
+            "premium":self.premium if self.premium else False,
                      
         }
     def to_admin(self):
