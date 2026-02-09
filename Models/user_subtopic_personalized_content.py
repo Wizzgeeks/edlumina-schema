@@ -13,7 +13,7 @@ class UserSubTopicPersonalizedContent(Document):
     topic = ReferenceField(Topic, required=True,reverse_delete_rule=CASCADE)
     subtopic = ReferenceField(Subtopic, required=True,reverse_delete_rule=CASCADE)
     user = ReferenceField(Users, required=True)
-    name = StringField(required=True)
+    # name = StringField(required=True)
     content = ListField(DictField())
     page_id=ReferenceField(SubtopicPageContent,required=True)
     created_at = DateTimeField(default=lambda: datetime.now(timezone.utc))

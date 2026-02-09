@@ -9,7 +9,7 @@ class UserSubjectPersonalizedContent(Document):
     course = ReferenceField(Course, required=True,reverse_delete_rule=CASCADE)
     subject = ReferenceField(Subject, required=True,reverse_delete_rule=CASCADE)
     user = ReferenceField(Users, required=True)
-    name = StringField(required=True)
+    # name = StringField()
     content = ListField(DictField())
     page_id=ReferenceField(SubjectPageContent,required=True)
     created_at = DateTimeField(default=lambda: datetime.now(timezone.utc))

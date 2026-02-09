@@ -7,7 +7,7 @@ from Models.course_page_content import CoursePageContent
 class UserCoursePersonalizedContent(Document):
     course = ReferenceField(Course, required=True,reverse_delete_rule=CASCADE)
     user = ReferenceField(Users, required=True)
-    name = StringField()
+    # name = StringField()
     content = StringField(required=True)
     page_id=ReferenceField(CoursePageContent,required=True)
     created_at = DateTimeField(default=lambda: datetime.now(timezone.utc))
