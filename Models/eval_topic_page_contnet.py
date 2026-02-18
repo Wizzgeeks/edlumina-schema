@@ -30,6 +30,7 @@ class EvalTopicPageContent(Document):
             "id": str(self.id),
             "topic_page_content": str(self.topic_page_content.id) if self.topic_page_content else None,
             "is_evaluated": self.is_evaluated,
+            "evalution_score": self.evalution_score,
             "overall_score": self.overall_score,
             "created_at": self.created_at,
             "updated_at": self.updated_at,
