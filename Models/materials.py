@@ -1,4 +1,4 @@
-from mongoengine import CASCADE, Document, StringField, ListField, ReferenceField, DateTimeField,DictField,BooleanField  
+from mongoengine import CASCADE, Document, StringField, ListField, ReferenceField, DateTimeField,DictField,BooleanField,IntField
 from datetime import datetime, timezone
 from Models.materials_folders import MaterialsFolders
 
@@ -11,6 +11,8 @@ class Materials(Document):
     materials_type = StringField(choices=["pdf", "videos", "image", "ppt", "audio"],required=True)
     created_by=StringField()
     updated_by = StringField()
+    markdown_content=ListField(DictField(), default=[])
+    total_pages = IntField()
     created_at = DateTimeField(default=lambda: datetime.now(timezone.utc))
     updated_at = DateTimeField(default=lambda: datetime.now(timezone.utc))
 
@@ -37,4 +39,10 @@ class Materials(Document):
             "materials_type":self.materials_type,
             "created_at": self.created_at,
             "updated_at": self.updated_at,
+        }
+    def to_json_with_markdown(self):
+        return {
+            "total_pages": self.total_pages,
+             "markdown_content": self.markdown_content,
+
         }
