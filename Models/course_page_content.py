@@ -59,9 +59,7 @@ class CoursePageContent(Document):
             "critical_thinking":self.critical_thinking if self.critical_thinking else 0,
             "application":self.application if self.application else 0,
             "tts_s3_url": self.tts_s3_url,
-            "tts_mime": self.tts_mime,
-
-            
+            "tts_mime": self.tts_mime,  
         }
     def to_json_medium(self):
         return {

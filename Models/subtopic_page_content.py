@@ -16,7 +16,11 @@ class SubtopicPageContent(Document):
     question_bank=ReferenceField(QuestionBank)
     
     name=StringField(required=True)
-    page_type=StringField(choices=['content','quiz','question_bank','test','mcq','match','fillups','content','expand','update','trueorfalse','analysis','active_recall','active_recall_content','active_recall_test'], required=True)
+    page_type=StringField(choices=['content','quiz','question_bank','test','mcq','match','fillups','content','expand','update','trueorfalse','analysis','active_recall','active_recall_content','active_recall_test','materials','material_item'], required=True)
+    material_type = StringField(
+        choices=["pdf", "ppt", "video","audio","image","doc","mindmap","other"],
+        default=None
+    )
     content=ListField(DictField(),default=[])
     medium_content=ListField(DictField())
     hard_content=ListField(DictField())
@@ -61,7 +65,7 @@ class SubtopicPageContent(Document):
             "name": self.name,
             "page_type": self.page_type,
             "content": self.content,
-          
+            "material_type": self.material_type,
             "is_deleted": self.is_deleted,
             "created_at": self.created_at,
             "updated_at": self.updated_at,
@@ -124,6 +128,7 @@ class SubtopicPageContent(Document):
             "sequence":self.sequence,
             "name": self.name,
             "page_type": self.page_type,
+            "material_type": self.material_type,
             "content": content_map.get(difficulty_level, self.content),
             "difficulty_level": difficulty_level,
             "is_deleted": self.is_deleted,
