@@ -155,6 +155,7 @@ class SubtopicPageContent(Document):
             "direct":self.direct if self.direct else 0, 
             "reasoning":self.reasoning if self.reasoning else 0,
             "critical_thinking":self.critical_thinking if self.critical_thinking else 0,
-            "application":self.application if self.application else 0
+            "application":self.application if self.application else 0,
+            "material_type": self.material_type
             
         }
