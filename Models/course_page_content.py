@@ -6,7 +6,11 @@ class CoursePageContent(Document):
     course=ReferenceField(Course, required=True,reverse_delete_rule=CASCADE)
     question_bank=ReferenceField(QuestionBank)
     name=StringField(required=True)
-    page_type=StringField(choices=['content','quiz','question_bank','test','mcq','match','fillups','content','expand','update','trueorfalse','analysis','active_recall','active_recall_content','active_recall_test'], required=True)
+    page_type=StringField(choices=['content','quiz','question_bank','test','mcq','match','fillups','content','expand','update','trueorfalse','analysis','active_recall','active_recall_content','active_recall_test','materials','material_item'], required=True)
+    material_type = StringField(
+        choices=["pdf", "ppt", "video","audio","image","doc","mindmap","other"],
+        default=None
+    )   
     content=ListField(DictField(),default=[])
     medium_content=ListField(DictField())
     hard_content=ListField(DictField())
@@ -60,6 +64,7 @@ class CoursePageContent(Document):
             "application":self.application if self.application else 0,
             "tts_s3_url": self.tts_s3_url,
             "tts_mime": self.tts_mime,  
+            "material_type": self.material_type
         }
     def to_json_medium(self):
         return {
@@ -116,7 +121,8 @@ class CoursePageContent(Document):
             "direct":self.direct if self.direct else 0, 
             "reasoning":self.reasoning if self.reasoning else 0,
             "critical_thinking":self.critical_thinking if self.critical_thinking else 0,
-            "application":self.application if self.application else 0
+            "application":self.application if self.application else 0,
+            "material_type": self.material_type,
             
         }
     def to_minimal_json(self):
@@ -131,5 +137,6 @@ class CoursePageContent(Document):
             "direct":self.direct if self.direct else 0, 
             "reasoning":self.reasoning if self.reasoning else 0,
             "critical_thinking":self.critical_thinking if self.critical_thinking else 0,
-            "application":self.application if self.application else 0
+            "application":self.application if self.application else 0,
+            "material_type": self.material_type
         }
