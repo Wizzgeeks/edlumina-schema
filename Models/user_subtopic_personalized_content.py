@@ -1,4 +1,4 @@
-from mongoengine import Document, ReferenceField, DateTimeField,StringField,DictField,ListField,CASCADE
+from mongoengine import Document, ReferenceField, DateTimeField,StringField,DictField,ListField,CASCADE,BooleanField
 from datetime import datetime,timezone
 from Models.course import Course
 from Models.user import Users
@@ -16,6 +16,10 @@ class UserSubTopicPersonalizedContent(Document):
     # name = StringField(required=True)
     content = StringField(required=True)
     page_id=ReferenceField(SubtopicPageContent,required=True)
+    tts_s3_url = StringField()
+    tts_mime = StringField(default="audio/wav")
+    tts_generated = BooleanField(default=False)
+    tts_generated_at = DateTimeField()
     created_at = DateTimeField(default=lambda: datetime.now(timezone.utc))
     updated_at = DateTimeField(default=lambda: datetime.now(timezone.utc))
 
@@ -33,4 +37,6 @@ class UserSubTopicPersonalizedContent(Document):
             "page_id": str(self.page_id),
             "created_at": self.created_at,
             "updated_at": self.updated_at,
+            "tts_s3_url": self.tts_s3_url,
+            "tts_mime": self.tts_mime,
         }
