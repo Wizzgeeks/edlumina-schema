@@ -5,7 +5,7 @@ from datetime import datetime,timezone
 class Persona(Document):
     name = StringField(required=True, unique=True)
     persona=StringField()
-    persona_type=StringField(choices=['ai_tutor','analysis_validation'],required=True)
+    persona_type=StringField(choices=['ai_tutor','analysis_validation',"think_analysis_validation","test_chat_bot"],required=True)
     is_active= BooleanField(default=False)
     created_by=StringField()
     updated_by = StringField()
