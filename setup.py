@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="edlumina-schema",
-    version="2.0.3",
+    version="2.0.4",
     description="Schema for Flask Admin and User backends",
     author="wizzgeeks",
     author_email="",
@@ -10,5 +10,5 @@ setup(
     packages=find_packages(),
     include_package_data=True,
     install_requires=[],
-    python_requires=">=3.7",
+    python_requires=">=4.7",
 )
