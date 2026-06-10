@@ -15,7 +15,11 @@ class TopicInstitutionPageContent(Document):
     # question_bank=ReferenceField(QuestionBank)
     
     name=StringField(required=True)
-    page_type=StringField(choices=['content','quiz','question_bank','test','mcq','match','fillups','content','expand','update','trueorfalse','analysis'], required=True)
+    page_type=StringField(choices=['content','quiz','question_bank','test','mcq','match','fillups','content','expand','update','trueorfalse','analysis','active_recall','active_recall_content','active_recall_test','materials','material_item'], required=True)
+    material_type = StringField(
+        choices=["pdf", "ppt", "video","audio","image","doc","mindmap","other"],
+        default=None
+)
     content=ListField(DictField(),default=[])
     medium_content=ListField(DictField())
     hard_content=ListField(DictField())
@@ -55,6 +59,7 @@ class TopicInstitutionPageContent(Document):
             "is_deleted": self.is_deleted,
             "created_at": self.created_at,
             "updated_at": self.updated_at,
+            "material_type": self.material_type
         }
     
     def to_json_medium(self):
@@ -68,7 +73,8 @@ class TopicInstitutionPageContent(Document):
             "created_at": self.created_at,
             "updated_at": self.updated_at,
             "duration":self.duration,
-            "pass_percentage":self.pass_percentage
+            "pass_percentage":self.pass_percentage,
+            "material_type": self.material_type
         }
     
     def to_json_hard(self):
@@ -82,7 +88,8 @@ class TopicInstitutionPageContent(Document):
             "created_at": self.created_at,
             "updated_at": self.updated_at,
             "duration":self.duration,
-            "pass_percentage":self.pass_percentage
+            "pass_percentage":self.pass_percentage,
+            "material_type": self.material_type
         }
     
     def to_json_difficulty(self, difficulty_level):
@@ -103,7 +110,8 @@ class TopicInstitutionPageContent(Document):
             "created_at": self.created_at,
             "updated_at": self.updated_at,
             "duration":self.duration,
-            "pass_percentage":self.pass_percentage
+            "pass_percentage":self.pass_percentage,
+            "material_type": self.material_type
             
         }
     
@@ -116,5 +124,6 @@ class TopicInstitutionPageContent(Document):
             "child_pages": [cp.to_minimal_json() for cp in self.child_pages] if self.child_pages else [],
             "hierarcy_level": self.hierarcy_level or 0,
             "duration":self.duration,
-            "pass_percentage":self.pass_percentage
+            "pass_percentage":self.pass_percentage,
+            "material_type": self.material_type
         }
