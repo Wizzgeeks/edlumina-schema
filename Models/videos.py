@@ -1,8 +1,14 @@
 from mongoengine import *
 from datetime import datetime, timezone
+from Models.course import Course
+from Models.institution import Institution
+from Models.batches import Batches
 
 
 class Videos(Document):
+    course = ReferenceField(Course, required=True)
+    institution = ReferenceField(Institution, required=True)
+    batch = ReferenceField(Batches, required=True)
     title = StringField(required=True)
     description = StringField()
     source_type = StringField(
@@ -39,6 +45,9 @@ class Videos(Document):
     def to_json(self):
         return {
             "id": str(self.id),
+            "course": str(self.course.id) if self.course else None,
+            "institution": str(self.institution.id) if self.institution else None,
+            "batch": str(self.batch.id) if self.batch else None,
             "title": self.title,
             "description": self.description,
             "source_type": self.source_type,
