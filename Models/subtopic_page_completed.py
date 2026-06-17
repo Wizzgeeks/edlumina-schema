@@ -63,11 +63,11 @@ class SubtopicPageCompleted(Document):
     def to_dict(self):
         return {
             "id": str(self.id),
-            "course": self.course.id if self.course else None,
-            "subject": self.subject.id if self.subject else None,
-            "topic": self.topic.id if self.topic else None,
-            "subtopic": self.subtopic.id if self.subtopic else None,
-            "subtopic_page_content": self.subtopic_page_content.id if self.subtopic_page_content else None,
+            "course": str(self.course.id) if self.course else None,
+            "subject": str(self.subject.id) if self.subject else None,
+            "topic": str(self.topic.id) if self.topic else None,
+            "subtopic": str(self.subtopic.id) if self.subtopic else None,
+            "subtopic_page_content": str(self.subtopic_page_content.id) if self.subtopic_page_content else None,
             "user": self.user.to_json() if self.user else None,
             "completed": self.completed,
             "question": self.question,
