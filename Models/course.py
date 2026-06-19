@@ -11,6 +11,7 @@ class Course(Document):
     is_deleted = BooleanField(default=False)
     active_recall_interval_days= IntField(default=0)
     pass_percentage=IntField(default=0)
+    total_number_quizes=IntField(default=0)
     publish=BooleanField(default=False)
     created_by=StringField()
     updated_by = StringField()
@@ -37,4 +38,5 @@ class Course(Document):
             "updated_at": self.updated_at,
             "active_recall_interval_days":self.active_recall_interval_days,
             "pass_percentage": self.pass_percentage,
+            "total_number_quizes": self.total_number_quizes,
         }

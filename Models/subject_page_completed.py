@@ -50,7 +50,7 @@ class SubjectPageCompleted(Document):
             "course": str(self.course.id) if self.course else None,
             "subject": str(self.subject.id) if self.subject else None,
             "subject_page_content": str(self.subject_page_content.id) if self.subject_page_content else None,
-            "user": self.user.to_json() if self.user else None,
+            # "user": self.user.to_json() if self.user else None,
             "completed": self.completed,
             "question": self.question,
             "content_quiz_completed": self.content_quiz_completed,
