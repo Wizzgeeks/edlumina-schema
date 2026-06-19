@@ -57,13 +57,21 @@ class BatchTeacherSubjectAssignment(Document):
     updated_by = StringField()
 
     meta = {
-        "indexes": [
-            ("batch", "subject"),
-            ("teacher",),
-            ("course",),
-            ("institution",)
-        ]
-    }
+    "indexes": [
+        ("batch", "subject"),
+        ("teacher",),
+        ("course",),
+        ("institution",),
+    ]
+    # a subject in a batch can only be assigned to one teacher.
+    #
+    # "indexes": [
+    #     {
+    #         "fields": ["batch", "subject"],
+    #         "unique": True
+    #     }
+    # ]
+}
 
     def save(self, *args, **kwargs):
         self.updated_at = datetime.now(timezone.utc)
