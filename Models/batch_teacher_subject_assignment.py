@@ -79,12 +79,12 @@ class BatchTeacherSubjectAssignment(Document):
 
     def to_json(self):
         return {
-            "id": str(self.id),
-            "institution_id": str(self.institution.id),
-            "course_id": str(self.course.id),
-            "batch_id": str(self.batch.id),
-            "subject_id": str(self.subject.id),
-            "teacher_id": str(self.teacher.id),
-            "created_at": self.created_at,
-            "updated_at": self.updated_at,
-        }
+        "id": str(self.id),
+        "institution": self.institution.to_json() if self.institution else None,
+        "course": self.course.to_json() if self.course else None,
+        "batch": self.batch.to_json() if self.batch else None,
+        "subject": self.subject.to_json() if self.subject else None,
+        "teacher": self.teacher.to_user() if self.teacher else None,
+        "created_at": self.created_at,
+        "updated_at": self.updated_at,
+    }
