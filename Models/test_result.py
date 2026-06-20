@@ -34,6 +34,8 @@ class TestResult(Document):
     updated_by = StringField()
     created_at = DateTimeField(default=lambda: datetime.now(timezone.utc))
     updated_at = DateTimeField(default=lambda: datetime.now(timezone.utc))
+    no_of_attempts=IntField(default=0)
+    user_attempt_data_histroy=ListField(DictField(),default=[])
 
     def save(self, *args, **kwargs):
         self.updated_at = datetime.now(timezone.utc)
@@ -58,6 +60,8 @@ class TestResult(Document):
             "created_at": self.created_at,
             "updated_at": self.updated_at,
             "feedback": self.feedback,
+        "no_of_attempts": self.no_of_attempts,
+        "user_attempt_data_histroy": self.user_attempt_data_histroy
         }
 
 
