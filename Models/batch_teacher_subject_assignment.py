@@ -1,6 +1,7 @@
 from mongoengine import (
     Document,
     ReferenceField,
+    ListField,
     DateTimeField,
     CASCADE,
     StringField
@@ -33,10 +34,9 @@ class BatchTeacherSubjectAssignment(Document):
         reverse_delete_rule=CASCADE
     )
 
-    subject = ReferenceField(
-        Subject,
-        required=True,
-        reverse_delete_rule=CASCADE
+    subjects = ListField(
+        ReferenceField(Subject, reverse_delete_rule=CASCADE),
+        default=list
     )
 
     teacher = ReferenceField(
@@ -56,22 +56,6 @@ class BatchTeacherSubjectAssignment(Document):
     created_by = StringField()
     updated_by = StringField()
 
-    meta = {
-    "indexes": [
-        ("batch", "subject"),
-        ("teacher",),
-        ("course",),
-        ("institution",),
-    ]
-    # a subject in a batch can only be assigned to one teacher.
-    #
-    # "indexes": [
-    #     {
-    #         "fields": ["batch", "subject"],
-    #         "unique": True
-    #     }
-    # ]
-}
 
     def save(self, *args, **kwargs):
         self.updated_at = datetime.now(timezone.utc)
@@ -83,7 +67,7 @@ class BatchTeacherSubjectAssignment(Document):
         "institution": self.institution.to_json() if self.institution else None,
         "course": self.course.to_json() if self.course else None,
         "batch": self.batch.to_json() if self.batch else None,
-        "subject": self.subject.to_json() if self.subject else None,
+        "subjects": [str(s) for s in self.subjects if s] if self.subjects else [],
         "teacher": self.teacher.to_user() if self.teacher else None,
         "created_at": self.created_at,
         "updated_at": self.updated_at,
