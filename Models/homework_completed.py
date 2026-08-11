@@ -17,6 +17,7 @@ class HomeworkCompleted(Document):
     completed=BooleanField()
     no_of_questions_attempted=IntField()
     no_of_question_correct=IntField()
+    feedback=ListField(DictField(),default=[])
     created_at = DateTimeField(default=lambda: datetime.now(timezone.utc))
     updated_at = DateTimeField(default=lambda: datetime.now(timezone.utc))
 
@@ -33,6 +34,7 @@ class HomeworkCompleted(Document):
             "completed": self.completed,
             "no_of_questions_attempted": self.no_of_questions_attempted,
             "no_of_question_correct": self.no_of_question_correct,
+            "feedback": self.feedback,
         }
     
     def to_user_list(self):
@@ -41,4 +43,5 @@ class HomeworkCompleted(Document):
             "user": self.user.to_json() if self.user else None,
             "no_of_questions_attempted": self.no_of_questions_attempted,
             "no_of_question_correct": self.no_of_question_correct,
+            "feedback": self.feedback,
         }
