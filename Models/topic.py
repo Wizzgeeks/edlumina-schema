@@ -13,6 +13,7 @@ class Topic(Document):
     active_recall_interval_days= IntField(default=1)
     created_by=StringField()
     updated_by = StringField()
+    total_number_quizes=IntField(default=0)
     created_at = DateTimeField(default=lambda: datetime.now(timezone.utc))
     updated_at = DateTimeField(default=lambda: datetime.now(timezone.utc))
 
@@ -31,5 +32,6 @@ class Topic(Document):
             "created_at": self.created_at,
             "updated_at": self.updated_at,
             "active_recall_interval_days":self.active_recall_interval_days,
+            "total_number_quizes":self.total_number_quizes,
         }
     

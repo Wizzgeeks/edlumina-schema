@@ -14,6 +14,7 @@ class Subtopic(Document):
     sequence=IntField(default=0)
     is_deleted=BooleanField(default=False)
     active_recall_interval_days = IntField(default=1)
+    total_number_quizes=IntField(default=0)
 
     created_by=StringField()
     updated_by=StringField()
@@ -38,5 +39,6 @@ class Subtopic(Document):
             "created_at": self.created_at,
             "updated_at": self.updated_at,
             "active_recall_interval_days":self.active_recall_interval_days,
+            "total_number_quizes":self.total_number_quizes,
         }
 

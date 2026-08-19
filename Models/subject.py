@@ -9,6 +9,7 @@ class Subject(Document):
     key = StringField(required=True, unique=True)
     is_deleted = BooleanField(default=False)
     active_recall_interval_days= IntField(default=1)
+    total_number_quizes=IntField(default=0)
 
     created_by=StringField()
     updated_by = StringField()
@@ -28,6 +29,7 @@ class Subject(Document):
             "name": self.name,
             "key": self.key,
             "is_deleted": self.is_deleted,
+            "total_number_quizes": self.total_number_quizes,
             "created_at": self.created_at,
             "updated_at": self.updated_at,
         }
