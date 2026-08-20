@@ -33,6 +33,10 @@ class Users(Document):
     dashboard_feedback = DictField()
     dashboard_feedback_generated_at = DateTimeField(default=lambda: datetime.now(timezone.utc)) 
     premium = BooleanField(default=True)    
+    reset_token = StringField()
+    reset_token_expiration = DateTimeField()
+    change_password_token = StringField()
+    change_password_token_expiration = DateTimeField()
     
     def save(self, *args, **kwargs):
         self.updated_at = datetime.now(timezone.utc)

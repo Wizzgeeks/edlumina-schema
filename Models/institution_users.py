@@ -17,6 +17,10 @@ class InstitutionUsers(Document):
     updated_by=StringField()
     secret_key=StringField()
     secret_key_exp=DateTimeField()
+    reset_token = StringField()
+    reset_token_expiration = DateTimeField()
+    change_password_token = StringField()
+    change_password_token_expiration = DateTimeField()
 
     def save(self, *args, **kwargs):
         self.updated_at = datetime.now(timezone.utc)
