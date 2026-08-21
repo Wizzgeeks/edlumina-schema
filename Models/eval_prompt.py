@@ -2,22 +2,22 @@ from mongoengine import Document,StringField,BooleanField,EnumField,ReferenceFie
 from datetime import datetime,timezone
 
 
-class Prompt(Document):
+
+class EvalPrompt(Document):
     name = StringField(required=True)
     prompt=StringField()
     json_mode=BooleanField(default=False)
     json_schema=StringField()
     persona=StringField()
     json_schema_google=StringField()
-    types=StringField(choices=['mcq','match','fillups','content','expand','update','trueorfalse','analysis','eval','personalized_quiz','feedback','personalized_content'],required=True)
-    default=BooleanField(default=False)
+    types=StringField(choices=['content_eval','ai_tutor_eval','personalized_quiz_eval','quiz_eval'],required=True)
     created_by=StringField()
     created_at = DateTimeField(default=lambda: datetime.now(timezone.utc))
     updated_at = DateTimeField(default=lambda: datetime.now(timezone.utc))
     
     def save(self, *args, **kwargs):
         self.updated_at = datetime.now(timezone.utc)
-        return super(Prompt, self).save(*args, **kwargs)
+        return super(EvalPrompt, self).save(*args, **kwargs)
     def to_json(self):
         return {
             "id": str(self.id),
@@ -31,14 +31,12 @@ class Prompt(Document):
             "updated_at": self.updated_at if self.updated_at else None,
             "persona": self.persona if self.persona else "",
             "types": self.types,
-            "default": self.default
         }
     def to_minimal_json(self):
         return {
             "id": str(self.id),
             "name": self.name,
             "types": self.types,
-            "default": self.default,
             "created_at": self.created_at if self.created_at else None,
             "updated_at": self.updated_at if self.updated_at else None,
         }
