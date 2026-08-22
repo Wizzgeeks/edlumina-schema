@@ -9,7 +9,7 @@ class Prompt(Document):
     json_schema=StringField()
     persona=StringField()
     json_schema_google=StringField()
-    types=StringField(choices=['mcq','match','fillups','content','expand','update','trueorfalse','analysis','eval','personalized_quiz','feedback','personalized_content','ai_tutor'],required=True)
+    types=StringField(choices=['mcq','match','fillups','content','expand','update','trueorfalse','analysis','eval','personalized_quiz','feedback','personalized_content','ai_tutor','think_analysis_validation','test_chat_bot'],required=True)
     default=BooleanField(default=False)
     created_by=StringField()
     created_at = DateTimeField(default=lambda: datetime.now(timezone.utc))
