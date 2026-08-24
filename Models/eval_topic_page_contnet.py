@@ -14,6 +14,7 @@ class EvalTopicPageContent(Document):
     is_evaluated = BooleanField(default=False)
     evalution_score=DictField()
     overall_score = IntField(min_value=0, max_value=10, required=True)
+    level = StringField(default="easy")
 
 
     created_at = DateTimeField(default=lambda: datetime.now(timezone.utc))
@@ -32,6 +33,7 @@ class EvalTopicPageContent(Document):
             "is_evaluated": self.is_evaluated,
             "evalution_score": self.evalution_score,
             "overall_score": self.overall_score,
+            "level": self.level,
             "created_at": self.created_at,
             "updated_at": self.updated_at,
         }
