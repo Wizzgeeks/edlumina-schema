@@ -37,6 +37,7 @@ class Users(Document):
     reset_token_expiration = DateTimeField()
     change_password_token = StringField()
     change_password_token_expiration = DateTimeField()
+    is_ai_eval_enabled = BooleanField(default=False)
     
     def save(self, *args, **kwargs):
         self.updated_at = datetime.now(timezone.utc)
@@ -58,6 +59,7 @@ class Users(Document):
             "created_at": self.created_at,
             "updated_at": self.updated_at,
             "grade":self.grade if self.grade else "",
+            "is_ai_eval_enabled": self.is_ai_eval_enabled if self.is_ai_eval_enabled else False,
 
 
 
@@ -77,6 +79,7 @@ class Users(Document):
             "preference":self.preference if self.preference else [],  
             "test_page_preference":self.test_page_preference if self.test_page_preference else "easy",
             "ai_teaching_preference":self.ai_teaching_preference if self.ai_teaching_preference else "easy",
+            "is_ai_eval_enabled": self.is_ai_eval_enabled if self.is_ai_eval_enabled else False,
                      
         }
     def to_admin(self):
@@ -89,6 +92,7 @@ class Users(Document):
             "email": self.email if self.email else "",
             "register_no": self.register_no if self.register_no else "",
             "disabled": self.disabled if self.disabled else False,
+            "is_ai_eval_enabled": self.is_ai_eval_enabled if self.is_ai_eval_enabled else False,
             # "is_deleted": self.is_deleted,
             # "created_at": self.created_at,
             # "updated_at": self.updated_at,
