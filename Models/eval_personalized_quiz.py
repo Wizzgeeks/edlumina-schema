@@ -1,4 +1,4 @@
-from mongoengine import Document, StringField, ReferenceField, DateTimeField, BooleanField,CASCADE
+from mongoengine import Document, StringField, ReferenceField, DateTimeField, BooleanField, CASCADE, DictField, IntField
 from datetime import datetime, timezone
 from Models.subtopic_page_completed import SubtopicPageCompleted
 from Models.user import Users
@@ -13,8 +13,8 @@ class EvalPersonalizedQuiz(Document):
     subject_page_completed=ReferenceField(SubjectPageCompleted,reverse_delete_rule=CASCADE)
     course_page_completed=ReferenceField(CoursePageCompleted,reverse_delete_rule=CASCADE)
     user=ReferenceField(Users,reverse_delete_rule=CASCADE)
-    evalution_score=StringField()
-    overall_score = StringField()
+    evalution_score=DictField()
+    overall_score = IntField(min_value=0, max_value=10, required=True)
 
     created_at = DateTimeField(default=lambda: datetime.now(timezone.utc))
     updated_at = DateTimeField(default=lambda: datetime.now(timezone.utc))

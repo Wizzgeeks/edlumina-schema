@@ -1,4 +1,4 @@
-from mongoengine import Document, StringField, ReferenceField, DateTimeField, BooleanField,CASCADE
+from mongoengine import Document, StringField, ReferenceField, DateTimeField, BooleanField, CASCADE, DictField, IntField
 from datetime import datetime, timezone
 from Models.user_course_personalized_content import UserCoursePersonalizedContent
 from Models.user_subject_personalized_content import UserSubjectPersonalizedContent
@@ -13,8 +13,8 @@ class EvalPersonalizedContent(Document):
     user_topic_personalized_content=ReferenceField(UserTopicPersonalizedContent,reverse_delete_rule=CASCADE)
     user_subtopic_personalized_content=ReferenceField(UserSubTopicPersonalizedContent,reverse_delete_rule=CASCADE)
     user=ReferenceField(Users,reverse_delete_rule=CASCADE)
-    evalution_score=StringField()
-    overall_score = StringField()
+    evalution_score=DictField()
+    overall_score = IntField(min_value=0, max_value=10, required=True)
 
     created_at = DateTimeField(default=lambda: datetime.now(timezone.utc))
     updated_at = DateTimeField(default=lambda: datetime.now(timezone.utc))
