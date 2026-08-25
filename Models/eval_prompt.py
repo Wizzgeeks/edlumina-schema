@@ -10,7 +10,7 @@ class EvalPrompt(Document):
     json_schema=StringField()
     persona=StringField()
     json_schema_google=StringField()
-    types=StringField(choices=['content_eval','ai_tutor_eval','personalized_quiz_eval','quiz_eval'],required=True)
+    types=StringField(choices=['content_eval','ai_tutor_eval','personalized_quiz_eval','quiz_eval','adaptive_learning_eval','personalized_content_eval'],required=True)
     created_by=StringField()
     created_at = DateTimeField(default=lambda: datetime.now(timezone.utc))
     updated_at = DateTimeField(default=lambda: datetime.now(timezone.utc))
