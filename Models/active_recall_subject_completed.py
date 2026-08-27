@@ -37,6 +37,7 @@ class ActiveRecallSubjectCompleted(Document):
         }
     def to_active_recall_test_result(self):
         return {
+            "id": str(self.id),
             "user": str(self.user.id) if self.user else None,
             "attempt_data": self.attempt_data,
             "completed": self.completed,
