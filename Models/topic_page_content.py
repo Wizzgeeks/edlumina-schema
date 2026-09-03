@@ -25,6 +25,7 @@ class TopicPageContent(Document):
     start_initial=BooleanField(default=False)
     start_end=BooleanField(default=False)
     sequence=IntField(default=0)
+    is_content_quiz_enabled = BooleanField(default=True)
 
     child_pages = ListField(ReferenceField("TopicPageContent", reverse_delete_rule=NULLIFY))
     hierarcy_level=IntField(default=0)
@@ -59,6 +60,7 @@ class TopicPageContent(Document):
             "page_type": self.page_type,
             "content": self.content,
             "sequence":self.sequence,
+            "is_content_quiz_enabled": self.is_content_quiz_enabled if hasattr(self, 'is_content_quiz_enabled') and self.is_content_quiz_enabled is not None else True,
             "is_deleted": self.is_deleted,
             "created_at": self.created_at,
             "updated_at": self.updated_at,
@@ -80,6 +82,7 @@ class TopicPageContent(Document):
             "name": self.name,
             "page_type": self.page_type,
             "medium_content": self.medium_content if self.medium_content else [],
+            "is_content_quiz_enabled": self.is_content_quiz_enabled if hasattr(self, 'is_content_quiz_enabled') and self.is_content_quiz_enabled is not None else True,
             "is_deleted": self.is_deleted,
             "created_at": self.created_at,
             "updated_at": self.updated_at,
@@ -97,6 +100,7 @@ class TopicPageContent(Document):
             "name": self.name,
             "page_type": self.page_type,
             "hard_content": self.hard_content if self.hard_content else [],
+            "is_content_quiz_enabled": self.is_content_quiz_enabled if hasattr(self, 'is_content_quiz_enabled') and self.is_content_quiz_enabled is not None else True,
             "is_deleted": self.is_deleted,
             "created_at": self.created_at,
             "updated_at": self.updated_at,
@@ -122,6 +126,7 @@ class TopicPageContent(Document):
             "sequence":self.sequence,
             "name": self.name,
             "page_type": self.page_type,
+            "is_content_quiz_enabled": self.is_content_quiz_enabled if hasattr(self, 'is_content_quiz_enabled') and self.is_content_quiz_enabled is not None else True,
             "content": content_map.get(difficulty_level, self.content),
             "difficulty_level": difficulty_level,
             "is_deleted": self.is_deleted,
@@ -150,7 +155,8 @@ class TopicPageContent(Document):
             "reasoning":self.reasoning if self.reasoning else 0,
             "critical_thinking":self.critical_thinking if self.critical_thinking else 0,
             "application":self.application if self.application else 0,
-            "material_type": self.material_type
+            "material_type": self.material_type,
+            "is_content_quiz_enabled": self.is_content_quiz_enabled if hasattr(self, 'is_content_quiz_enabled') and self.is_content_quiz_enabled is not None else True
         }
     def to_json_difficulty_admin(self, difficulty_level):
         content_map = {
@@ -165,6 +171,7 @@ class TopicPageContent(Document):
             "sequence": self.sequence,
             "name": self.name,
             "page_type": self.page_type,
+            "is_content_quiz_enabled": self.is_content_quiz_enabled if hasattr(self, 'is_content_quiz_enabled') and self.is_content_quiz_enabled is not None else True,
             "content": content_map.get(difficulty_level, []),  # default empty
             "difficulty_level": difficulty_level,
             "is_deleted": self.is_deleted,
