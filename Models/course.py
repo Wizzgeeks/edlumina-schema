@@ -8,6 +8,8 @@ class Course(Document):
     iqTest=ReferenceField(InitialOnboardingTest,reverse_delete_rule=NULLIFY)
     name = StringField(required=True,unique=True)
     key = StringField(required=True, unique=True)
+    board = StringField()
+    class_name = StringField()
     is_deleted = BooleanField(default=False)
     active_recall_interval_days= IntField(default=0)
     pass_percentage=IntField(default=80)
@@ -39,4 +41,7 @@ class Course(Document):
             "active_recall_interval_days":self.active_recall_interval_days,
             "pass_percentage": self.pass_percentage,
             "total_number_quizes": self.total_number_quizes,
+            "board": self.board if getattr(self, 'board', None) else "",
+            "class": self.class_name if getattr(self, 'class_name', None) else "",
+            "class_name": self.class_name if getattr(self, 'class_name', None) else "",
         }

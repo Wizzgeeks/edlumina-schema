@@ -31,6 +31,7 @@ class Institution(Document):
     name = StringField(required=True, unique=True)
     description = StringField()
     type=StringField(choices=["school","college"],required=True)
+    board = StringField()
     created_by=StringField()
     updated_by = StringField()
     mobile=StringField()
@@ -66,6 +67,7 @@ class Institution(Document):
             "website_url":self.website_url or "",
             "address":self.address or "",
             "type":self.type,
+            "board": self.board if getattr(self, 'board', None) else "",
             "preference_question_id": str(self.preference_question.id) if self.preference_question else None,
             "preference_question_name": self.preference_question.name if self.preference_question else ""   
         }
