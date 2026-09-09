@@ -42,6 +42,5 @@ class Course(Document):
             "pass_percentage": self.pass_percentage,
             "total_number_quizes": self.total_number_quizes,
             "board": self.board if getattr(self, 'board', None) else "",
-            "class": self.class_name if getattr(self, 'class_name', None) else "",
             "class_name": self.class_name if getattr(self, 'class_name', None) else "",
         }
