@@ -21,6 +21,7 @@ class InstitutionUsers(Document):
     reset_token_expiration = DateTimeField()
     change_password_token = StringField()
     change_password_token_expiration = DateTimeField()
+    temp_password = StringField()
 
     def save(self, *args, **kwargs):
         self.updated_at = datetime.now(timezone.utc)
@@ -37,6 +38,7 @@ class InstitutionUsers(Document):
             # "is_active": self.is_active,
             "created_at": self.created_at,
             "updated_at": self.updated_at,
+            "temp_password": self.temp_password if getattr(self, "temp_password", None) else "",
         }
     def to_user(self):
         return {
